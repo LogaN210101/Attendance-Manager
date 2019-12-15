@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "268516785693",
+    "firebase_url": "https://attendance-dbfaf.firebaseio.com",
+    "project_id": "attendance-dbfaf",
+    "storage_bucket": "attendance-dbfaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268516785693:android:db95610d9a7e95003710f4",
+        "android_client_info": {
+          "package_name": "com.example.attendancemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268516785693-lb4ijgjoqg5205a0kn6d86lql4bit2il.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-1BotCMjiK6pSvNp2IoWqHyF8qSZExg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268516785693-lb4ijgjoqg5205a0kn6d86lql4bit2il.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
