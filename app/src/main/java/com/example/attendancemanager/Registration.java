@@ -51,7 +51,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Registration extends AppCompatActivity {
-    private EditText uname, upass, nm,clgname,clgroll,sec,yer;
+    private EditText uname, upass, nm,clgname,clgroll,sec,yer,teacherdept;
     private TextView hd,next;
     private RadioGroup r;
     private RadioButton teacher, student, op;
@@ -70,6 +70,7 @@ public class Registration extends AppCompatActivity {
         ft= FirebaseDatabase.getInstance().getReference().child("Teacher"); //Database for Teacher
         fs=FirebaseDatabase.getInstance().getReference().child("Student"); //Database for students
         fu=FirebaseDatabase.getInstance().getReference().child("Users"); //Store user info
+
         //First UI details to appear
         uname = findViewById(R.id.email);
         upass = findViewById(R.id.password);
@@ -87,6 +88,7 @@ public class Registration extends AppCompatActivity {
         clgroll=findViewById(R.id.rollnumber);
         yer=findViewById(R.id.year);
         dpt = findViewById(R.id.department);
+        teacherdept=findViewById(R.id.Teacherdepartment);
         sv=findViewById(R.id.save);
 
         //Setting detail entries invisible
@@ -97,6 +99,7 @@ public class Registration extends AppCompatActivity {
         yer.setVisibility(View.INVISIBLE);
         dpt.setVisibility(View.INVISIBLE);
         sv.setVisibility(View.INVISIBLE);
+        teacherdept.setVisibility(View.INVISIBLE);
 
         //For drop down list
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
@@ -154,7 +157,7 @@ public class Registration extends AppCompatActivity {
                                 public void run() {
                                     load();
                                 }
-                            },1500);
+                            },1000);
                         } else
                             Toast.makeText(Registration.this, "Please try again", Toast.LENGTH_SHORT).show();
                         progress.dismiss();
@@ -168,11 +171,13 @@ public class Registration extends AppCompatActivity {
         if (op.getText().toString().equals("Teacher"))
         {
             show();
+            teacherdept.setVisibility(View.VISIBLE);
             return;
         }
         else if(op.getText().toString().equals("Student"))
         {
             show();
+            dpt.setVisibility(View.VISIBLE);
             clgroll.setVisibility(View.VISIBLE);
             sec.setVisibility(View.VISIBLE);
             yer.setVisibility(View.VISIBLE);
@@ -192,9 +197,10 @@ public class Registration extends AppCompatActivity {
 
         nm.setVisibility(View.VISIBLE);
         clgname.setVisibility(View.VISIBLE);
-        dpt.setVisibility(View.VISIBLE);
+
         sv.setVisibility(View.VISIBLE);
-        hd.setText("Enter Details");
+        hd.setText("Enter Details to complete registration");
+        hd.setTextSize(20f);
     }
     void extradata()
     {
