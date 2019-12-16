@@ -22,47 +22,51 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth auth;
-    EditText e,p;
-    Button b;
-    String email,password;
+    EditText ue,up;
+    Button sign;
+    String useremail,userpassword;
     ProgressDialog pd;
     TextView tvreg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        b=findViewById(R.id.button);
-        e=findViewById(R.id.editText);
-        p=findViewById(R.id.edittext2);
-        b.setOnClickListener(this);
+        sign=findViewById(R.id.button);
+        ue=findViewById(R.id.email);
+        up=findViewById(R.id.password);
+        sign.setOnClickListener(this);
         auth=FirebaseAuth.getInstance();
         pd=new ProgressDialog(this);
         tvreg=findViewById(R.id.textView2);
         tvreg.setOnClickListener(this);
+        /*if(auth.getCurrentUser()!=null){
+            finish();
+            Intent it=new Intent(MainActivity.this,User.class);
+            startActivity(it);
+        }*/
     }
 
     @Override
     public void onClick(View v) {
-        if(v==b)
+        if(v==sign)
         {
-            email=e.getText().toString().trim();
-            password=p.getText().toString().trim();
-            if(email.equals(""))
+            useremail=ue.getText().toString().trim();
+            userpassword=up.getText().toString().trim();
+            if(useremail.equals(""))
             {
                 Toast.makeText(getApplicationContext(),"Email Id cannot be Blank",Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(password.equals(""))
+            if(userpassword.equals(""))
             {
                 Toast.makeText(getApplicationContext(),"Password cannot be Blank",Toast.LENGTH_SHORT).show();
                 return;
             }
             pd.setMessage("Logging in...");
             pd.show();
-            auth.signInWithEmailAndPassword(email,password)
+            auth.signInWithEmailAndPassword(useremail,userpassword)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if (task.isSuccessful()) {
                                 finish();
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                //Call User Page
+                                calllogin();//Call User Page
                             } else {
                                 Toast.makeText(getApplicationContext(), "Login Unsuccessful. Please Check email and password", Toast.LENGTH_SHORT).show();
                             }
@@ -81,7 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v==tvreg)
         {
-            //Registration Activity
+            Intent it=new Intent(MainActivity.this,Registration.class);
+            startActivity(it); //Registration Activity
         }
+
+    }
+    private void calllogin()
+    {
+       /*Intent it=new Intent(MainActivity.this,Login.class);
+       startActivity(it);
+       */
     }
 }

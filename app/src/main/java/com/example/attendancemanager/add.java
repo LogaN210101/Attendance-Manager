@@ -2,13 +2,16 @@ package com.example.attendancemanager;
 
 public class add
 {
-    public String s;
+    public String name,dept,clg,t;
     add()
     {
 
     }
-    add(String s)
+    add(String n,String d,String c,String t)
     {
-        this.s=s;
+        name=n;
+        dept=d;
+        clg=c;
+        this.t=t;
     }
 }

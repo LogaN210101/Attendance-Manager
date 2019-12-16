@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Attendance Manager</string>
+    <string-array name="Department">
+        <item>Department</item>
+        <item>CSE</item>
+        <item>ECE</item>
+        <item>EE</item>
+        <item>IT</item>
+        <item>AEIE</item>
+        <item>Ch.E</item>
+        <item>BT</item>
+        <item>ME</item>
+        <item>CE</item>
+    </string-array>
 </resources>
