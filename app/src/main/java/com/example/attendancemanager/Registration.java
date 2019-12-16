@@ -207,9 +207,9 @@ public class Registration extends AppCompatActivity {
         String dep=spinner.getSelectedItem().toString().trim();
         if(op.getText().toString().equals("Teacher"))
         {
-            if(name.equals(""))
+            if(dep.equals("") || dep.equals("Department"))
             {
-                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(clg.equals(""))
@@ -217,9 +217,10 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"College cannot be empty",Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(dep.equals("") || dep.equals("Department"))
+
+            if(name.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
                 return;
             }
             add a=new add(name,dep,clg,"Teacher");
@@ -233,24 +234,9 @@ public class Registration extends AppCompatActivity {
         }
         if(op.getText().toString().equals("Student"))
         {
-            if(name.equals(""))
+            if(yr.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(clg.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"College cannot be empty",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(dep.equals("") || dep.equals("Department"))
-            {
-                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(sc.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Section cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Enter your year of joining",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(clgr.equals(""))
@@ -258,9 +244,24 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Roll cannot be empty",Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(yr.equals(""))
+            if(sc.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Please Enter your year of joining",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Section cannot be empty",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(dep.equals("") || dep.equals("Department"))
+            {
+                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(clg.equals(""))
+            {
+                Toast.makeText(getApplicationContext(),"College cannot be empty",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(name.equals(""))
+            {
+                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
                 return;
             }
             AddS ad=new AddS(name,clg,dep,sc,clgr,yr,"Student");

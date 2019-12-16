@@ -42,10 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvreg=findViewById(R.id.textView2);
         tvreg.setOnClickListener(this);
         /*if(auth.getCurrentUser()!=null){
-            finish();
-            Intent it=new Intent(MainActivity.this,User.class);
-            startActivity(it);
-        }*/
+            calllogin();
+            */
     }
 
     @Override
