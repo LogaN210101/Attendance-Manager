@@ -84,6 +84,11 @@ public class Studentsubs extends AppCompatActivity {
         for(a=0;a<i;a++)
         { Subs= Subs+subjects[a]+",";
         }
+        if(i==0)
+        {
+            Toast.makeText(getApplicationContext(),"Please select your subjects",Toast.LENGTH_SHORT).show();
+            return;
+        }
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
         alt.setTitle("Are you sure you want to proceed with the below subjects?")
                 .setCancelable(false)
