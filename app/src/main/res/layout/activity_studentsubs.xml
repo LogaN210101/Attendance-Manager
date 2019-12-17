@@ -22,13 +22,13 @@
 
     <CheckBox
         android:id="@+id/maths"
-        android:layout_width="250dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:text="MATHS"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.232" />
@@ -100,13 +100,13 @@
 
     <CheckBox
         android:id="@+id/humanities"
-        android:layout_width="250dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:text="HMTS"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.745" />
@@ -217,5 +217,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.89" />
+
+    <CheckBox
+        android:id="@+id/hmtslab"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:text="HMTS LAB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.716"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.745" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

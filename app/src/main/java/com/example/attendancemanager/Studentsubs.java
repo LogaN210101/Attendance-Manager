@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class Studentsubs extends AppCompatActivity {
     private Button save;
-    private CheckBox MATHS,PHYS,PHLAB,CHEM,CHLAB,ELEC,ELECLAB,ECE,ECELAB,MECH,MECHLAB,HMTS,CSEN,CSLAB;
+    private CheckBox MATHS,PHYS,PHLAB,CHEM,CHLAB,ELEC,ELECLAB,ECE,ECELAB,MECH,MECHLAB,HMTS,HMTSLAB,CSEN,CSLAB;
     String subjects[]=new String[14],Subs="";
     int i=0,a=0;
     @Override
@@ -33,6 +33,7 @@ public class Studentsubs extends AppCompatActivity {
         MECH=findViewById(R.id.mechanical);
         MECHLAB=findViewById(R.id.mechlab);
         HMTS=findViewById(R.id.humanities);
+        HMTSLAB=findViewById(R.id.hmtslab);
         CSEN=findViewById(R.id.computer);
         CSLAB=findViewById(R.id.cslab);
 
@@ -74,6 +75,8 @@ public class Studentsubs extends AppCompatActivity {
             subjects[i++] = MECHLAB.getText().toString();
         if (HMTS.isChecked())
             subjects[i++] = HMTS.getText().toString();
+        if (HMTSLAB.isChecked())
+            subjects[i++] = HMTSLAB.getText().toString();
 
 
 
