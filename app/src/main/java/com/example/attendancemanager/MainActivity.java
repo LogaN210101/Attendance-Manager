@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth auth;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String useremail,userpassword;
     ProgressDialog pd;
     TextView tvreg;
+    private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pd=new ProgressDialog(this);
         tvreg=findViewById(R.id.register);
         tvreg.setOnClickListener(this);
-        /*if(auth.getCurrentUser()!=null){
-            finish();
-            Intent it=new Intent(MainActivity.this,User.class);
-            startActivity(it);
-        }*/
+        if(auth.getCurrentUser()!=null){
+            calllogin();
+        }
+        db= FirebaseDatabase.getInstance().getReference().child("Types");
     }
 
     @Override
@@ -67,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             pd.dismiss();
                             if (task.isSuccessful()) {
-                                finish();
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                 calllogin();//Call User Page
                             } else {
@@ -87,6 +91,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void calllogin()
     {
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds :dataSnapshot.getChildren()){
+                    add a=ds.getValue(add.class);
+                    if(a.uname.indexOf("Student")>0)
+                    {
+                        /*Call Student activity class
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),Studentsubs.class));
+                         */
+                    }
+                    if(a.uname.indexOf("Teacher")>0)
+                    {
+                        /*Call Teacher activity class
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),Studentsubs.class));
+                         */
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
        /*Intent it=new Intent(MainActivity.this,Login.class);
        startActivity(it);
        */

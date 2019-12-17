@@ -182,7 +182,7 @@
         android:id="@+id/cslab"
         android:layout_width="125dp"
         android:layout_height="50dp"
-        android:text="CS LAB"
+        android:text="CSEN LAB"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
