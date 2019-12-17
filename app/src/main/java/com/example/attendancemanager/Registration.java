@@ -19,6 +19,8 @@ import android.text.TextUtils;
 
 import android.view.View;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 
 import android.widget.ArrayAdapter;
@@ -64,6 +66,8 @@ public class Registration extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_registration);
         progress = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,7 +83,6 @@ public class Registration extends AppCompatActivity {
         student = findViewById(R.id.rstudent);
         hd=findViewById(R.id.heading);
         next = findViewById(R.id.proceed);
-        next.setTextColor(Color.GREEN);
 
         //For details part after registration
         nm = findViewById(R.id.name);
