@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
     tools:context=".MainActivity">
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signin"
         android:layout_width="154dp"
         android:layout_height="68dp"
         android:background="@drawable/back"
@@ -22,7 +21,7 @@
         app:layout_constraintVertical_bias="0.71" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/email"
         android:layout_width="261dp"
         android:layout_height="43dp"
         android:ems="10"
@@ -34,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edittext2"
+        android:id="@+id/password"
         android:layout_width="266dp"
         android:layout_height="47dp"
         android:ems="10"
@@ -61,7 +60,7 @@
         app:layout_constraintVertical_bias="0.299" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/heading"
         android:layout_width="154dp"
         android:layout_height="71dp"
         android:text="LOGIN"
@@ -74,7 +73,7 @@
         app:layout_constraintVertical_bias="0.11" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/register"
         android:layout_width="253dp"
         android:layout_height="63dp"
         android:text="Don't have an Account? REGISTER here"
@@ -85,6 +84,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.901" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
