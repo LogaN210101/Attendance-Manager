@@ -1,15 +1,14 @@
 package com.example.attendancemanager;
 
 public class AddS {
-    public String n,c,d,s,cr,y,t;
-    public AddS(String n,String c,String d,String s,String cr,String y,String t )
+    public String name,college,dept,section,classroll,year;
+    public AddS(String n,String c,String d,String s,String cr,String y)
     {
-        this.n=n;
-        this.c=c;
-        this.cr=cr;
-        this.y=y;
-        this.d=d;
-        this.s=s;
-        this.t=t;
+        this.name=n;
+        this.college=c;
+        this.classroll=cr;
+        this.year=y;
+        this.dept=d;
+        this.section=s;
     }
 }

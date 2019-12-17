@@ -67,7 +67,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         progress = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        ft= FirebaseDatabase.getInstance().getReference().child("Teacher"); //Database for Teacher
+        ft=FirebaseDatabase.getInstance().getReference().child("Types"); //Database for Account Type
         fs=FirebaseDatabase.getInstance().getReference().child("Student"); //Database for students
         fu=FirebaseDatabase.getInstance().getReference().child("Users"); //Store user info
 
@@ -213,24 +213,27 @@ public class Registration extends AppCompatActivity {
         String dep=spinner.getSelectedItem().toString().trim();
         if(op.getText().toString().equals("Teacher"))
         {
-            if(dep.equals("") || dep.equals("Department"))
+            dep=teacherdept.getText().toString();
+            if(dep.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Select your department",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(clg.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"College cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please enter college name",Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if(name.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
                 return;
             }
-            add a=new add(name,dep,clg,"Teacher");
+            AddS a=new AddS(name,clg,dep,"","","");
             fu.child((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))).setValue(a);
+            add a1=new add((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))+"Teacher");
+            ft.push().setValue(a1);
             Toast.makeText(getApplicationContext(),"Details successfully noted!",Toast.LENGTH_SHORT).show();
             nm.setText("");
             clgname.setText("");
@@ -247,7 +250,7 @@ public class Registration extends AppCompatActivity {
             }
             if(clgr.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Roll cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Enter Roll number",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(sc.equals(""))
@@ -255,33 +258,31 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Section cannot be empty",Toast.LENGTH_SHORT).show();
                 return;
             }
-            if(dep.equals("") || dep.equals("Department"))
+            if(dep.equals("Department") || dep.equals(("")))
             {
-                Toast.makeText(getApplicationContext(),"Select Your Department",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Select Your Department",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(clg.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"College cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please enter your college name",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(name.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Name cannot be empty",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
                 return;
             }
-            AddS ad=new AddS(name,clg,dep,sc,clgr,yr,"Student");
-            //fs.child(clg).child(""+dep+sc+yr).child(clgr).setValue(ad);
+            AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
             fu.child((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))).setValue(ad);
+            fs.child(clg).child(""+dep+sc+yr).child(clgr).setValue(ad);
+            add a=new add((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))+"Student");
+            ft.push().setValue(a);
             Toast.makeText(getApplicationContext(),"Details successfully noted!",Toast.LENGTH_SHORT).show();
-            nm.setText("");
-            clgname.setText("");
-            sec.setText("");
-            clgroll.setText("");
-            yer.setText("");
-            finish();
-            Intent it=new Intent(Registration.this,MainActivity.class);
-            startActivity(it);
+
         }
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
     }
 }
+
