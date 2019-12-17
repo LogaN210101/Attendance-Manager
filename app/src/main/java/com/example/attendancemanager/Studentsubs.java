@@ -45,7 +45,7 @@ public class Studentsubs extends AppCompatActivity {
 
     }
     public void Checkon() {
-
+        i=0;
         if (MATHS.isChecked())
             subjects[i++] = MATHS.getText().toString();
         if (PHYS.isChecked())
@@ -92,6 +92,7 @@ public class Studentsubs extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+
                     }
                 })
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {

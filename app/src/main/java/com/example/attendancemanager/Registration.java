@@ -281,7 +281,7 @@ public class Registration extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Details successfully noted!",Toast.LENGTH_SHORT).show();
 
         }
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        startActivity(new Intent(getApplicationContext(),Studentsubs.class));
 
     }
 }
