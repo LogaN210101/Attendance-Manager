@@ -51,7 +51,7 @@ public class Studentsubs extends AppCompatActivity {
         info= test.substring(0,test.indexOf('@'));
         clg=test.substring((test.indexOf('@')+1),test.indexOf('!'));
         clgr=test.substring(test.indexOf('!')+1);
-        fd=FirebaseDatabase.getInstance().getReference().child("Students").child(clg).child(info).child(clgr);
+        fd=FirebaseDatabase.getInstance().getReference().child("Students");
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +127,13 @@ public class Studentsubs extends AppCompatActivity {
     }
     public void saveData()
     {
-
+        for(int q=0;q<i;q++)
+        {
+            AllSub als=new AllSub("0","0");
+            fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(als);
+        }
+        Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration proces",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(Studentsubs.this,MainActivity.class));
     }
 }
 

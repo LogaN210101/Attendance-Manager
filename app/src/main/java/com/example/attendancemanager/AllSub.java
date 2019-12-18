@@ -1,11 +1,15 @@
 package com.example.attendancemanager;
 
-public class AllSub {
-    String present,absent;
-    public AllSub(){}
-    public AllSub(String present,String absent)
+public class AllSub
+{
+    public String present,absent;
+    public AllSub()
     {
-        this.present=present;
-        this.absent=absent;
+
+    }
+    AllSub(String p,String a)
+    {
+        present=p;
+        absent=a;
     }
 }

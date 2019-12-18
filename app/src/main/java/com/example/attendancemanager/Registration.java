@@ -159,7 +159,7 @@ public class Registration extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Registration.this, "Registered user successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registration.this, "New Account Created", Toast.LENGTH_SHORT).show();
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -167,7 +167,7 @@ public class Registration extends AppCompatActivity {
                                 }
                             },1000);
                         } else
-                            Toast.makeText(Registration.this, "Please try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registration.this, "Oops! Something's not right. Please try again", Toast.LENGTH_SHORT).show();
                         progress.dismiss();
                     }
                 });
@@ -283,14 +283,13 @@ public class Registration extends AppCompatActivity {
             }
             AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
             fu.child((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))).setValue(ad);
-            //fs.child(clg).child(""+dep+sc+yr).child(clgr).setValue(ad);
             add a=new add((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))+"Student");
             ft.push().setValue(a);
-            Toast.makeText(getApplicationContext(),"Details successfully noted!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Few more Details remaining...",Toast.LENGTH_SHORT).show();
             Intent i=new Intent(getApplicationContext(),Studentsubs.class);
             g=""+dep+sc+yr+"@"+clg+"!"+clgr;
             i.putExtra(g,g);
-            //finish();
+            finish();
             startActivity(i);
         }
     }
