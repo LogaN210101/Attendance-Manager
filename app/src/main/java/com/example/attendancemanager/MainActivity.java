@@ -110,9 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     add a=ds.getValue(add.class);
                     if(a.uname.indexOf("Student")>0)
                     {
-                        /*Call Student activity class
+                        /* Call Student Activity
                         finish();
-                        startActivity(new Intent(getApplicationContext(),Studentsubs.class));
+                        startActivity(new Intent(getApplicationContext(),Registration.class));
                          */
                     }
                     if(a.uname.indexOf("Teacher")>0)
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Alet!")
+        alt.setTitle("Alert!")
                 .setCancelable(false)
                 .setMessage("Are you sure you want to exit?")
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
