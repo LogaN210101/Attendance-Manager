@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back"
     tools:context=".Studentsubs">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="352dp"
         android:layout_height="70dp"
-        android:text="Select your Subjects"
+        android:text="Select Your Subjects"
         android:textAlignment="center"
         android:textColor="#1B0A0A"
         android:textSize="24sp"
@@ -209,8 +210,9 @@
         android:id="@+id/saveinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:background="#536DFE"
 
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.715"

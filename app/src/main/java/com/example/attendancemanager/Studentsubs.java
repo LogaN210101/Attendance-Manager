@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import static android.graphics.Color.BLUE;
+
 public class Studentsubs extends AppCompatActivity {
     private Button save;
     private CheckBox MATHS,PHYS,PHLAB,CHEM,CHLAB,ELEC,ELECLAB,ECE,ECELAB,MECH,MECHLAB,HMTS,HMTSLAB,CSEN,CSLAB;
@@ -28,6 +32,8 @@ public class Studentsubs extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_studentsubs);
+        getSupportActionBar().setTitle("Registration Page");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         save=findViewById(R.id.saveinfo);
         //Linking all the subjects
         MATHS=findViewById(R.id.maths);
@@ -106,10 +112,10 @@ public class Studentsubs extends AppCompatActivity {
             return;
         }
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Are you sure you want to proceed with the below subjects?")
+        alt.setTitle("Please Recheck your inputs before proceeding.")
                 .setCancelable(false)
                 .setMessage(Subs)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Re-Check", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -133,7 +139,23 @@ public class Studentsubs extends AppCompatActivity {
             fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(als);
         }
         Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration proces",Toast.LENGTH_LONG).show();
+        finish();
         startActivity(new Intent(Studentsubs.this,MainActivity.class));
+    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Warning!")
+                .setCancelable(false)
+                .setMessage("You cannot Leave while registering. If you close the app now, all data will be lost.")
+                .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();;
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
 }
 

@@ -7,10 +7,11 @@
     android:id="@+id/lt"
     android:background="@drawable/back"
     tools:context=".Registration">
+
     <TextView
         android:id="@+id/heading"
-        android:layout_width="319dp"
-        android:layout_height="116dp"
+        android:layout_width="320dp"
+        android:layout_height="103dp"
         android:text="Registration"
         android:textAlignment="center"
         android:textSize="50sp"
@@ -137,6 +138,7 @@
         android:ems="10"
         android:hint="Year of joining"
         android:inputType="number"
+        android:maxLength="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.322"

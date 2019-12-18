@@ -1,9 +1,11 @@
 package com.example.attendancemanager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v==tvreg)
         {
             Intent it=new Intent(MainActivity.this,Registration.class);
+            finish();
             startActivity(it); //Registration Activity
         }
 
@@ -127,5 +130,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Alet!")
+                .setCancelable(false)
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
 }

@@ -2,12 +2,14 @@ package com.example.attendancemanager;
 
 import androidx.annotation.NonNull;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
 
 import android.app.ProgressDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 
@@ -63,6 +65,7 @@ public class Registration extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private Spinner dpt;
     private Button sv,next;
+    int check=0; //To check whether registration started or not
     static String g="";
     String name, dept, sc, clg, yr,clgr;
     DatabaseReference ft,fs,fu;
@@ -202,7 +205,7 @@ public class Registration extends AppCompatActivity {
         teacher.setVisibility(View.INVISIBLE);
         student.setVisibility(View.INVISIBLE);
         next.setVisibility(View.INVISIBLE);
-
+        check=1;
         nm.setVisibility(View.VISIBLE);
         clgname.setVisibility(View.VISIBLE);
 
@@ -213,8 +216,8 @@ public class Registration extends AppCompatActivity {
     void extradata()
     {
         name=nm.getText().toString().trim();
-        clg=clgname.getText().toString().trim();
-        sc=sec.getText().toString().trim();
+        clg=clgname.getText().toString().trim().toUpperCase();
+        sc=sec.getText().toString().trim().toUpperCase();
         clgr=clgroll.getText().toString().trim();
         yr=yer.getText().toString().trim();
         Spinner spinner=findViewById(R.id.department);
@@ -291,6 +294,26 @@ public class Registration extends AppCompatActivity {
             i.putExtra(g,g);
             finish();
             startActivity(i);
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        if (check == 0) {
+            finish();
+            startActivity(new Intent(Registration.this, MainActivity.class));
+        } else if (check == 1) {
+            AlertDialog.Builder alt = new AlertDialog.Builder(this);
+            alt.setTitle("Warning!")
+                    .setCancelable(false)
+                    .setMessage("You cannot Leave while registering. If you close the app now, all data will be lost.")
+                    .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();;
+                        }
+                    });
+            AlertDialog a1 = alt.create();
+            a1.show();
         }
     }
 }
