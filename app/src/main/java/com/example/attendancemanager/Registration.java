@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -51,16 +52,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static android.graphics.Color.BLUE;
 
 public class Registration extends AppCompatActivity {
     private EditText uname, upass, nm,clgname,clgroll,sec,yer,teacherdept;
-    private TextView hd,next;
+    private TextView hd;
     private RadioGroup r;
     private RadioButton teacher, student, op;
     private ProgressDialog progress;
     private FirebaseAuth firebaseAuth;
     private Spinner dpt;
-    private Button sv;
+    private Button sv,next;
+    static String g="";
     String name, dept, sc, clg, yr,clgr;
     DatabaseReference ft,fs,fu;
     @Override
@@ -69,6 +72,8 @@ public class Registration extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_registration);
+        getSupportActionBar().setTitle("Registration Page");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         progress = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
         ft=FirebaseDatabase.getInstance().getReference().child("Types"); //Database for Account Type
@@ -278,14 +283,16 @@ public class Registration extends AppCompatActivity {
             }
             AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
             fu.child((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))).setValue(ad);
-            fs.child(clg).child(""+dep+sc+yr).child(clgr).setValue(ad);
+            //fs.child(clg).child(""+dep+sc+yr).child(clgr).setValue(ad);
             add a=new add((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))+"Student");
             ft.push().setValue(a);
             Toast.makeText(getApplicationContext(),"Details successfully noted!",Toast.LENGTH_SHORT).show();
-
+            Intent i=new Intent(getApplicationContext(),Studentsubs.class);
+            g=""+dep+sc+yr+"@"+clg+"!"+clgr;
+            i.putExtra(g,g);
+            //finish();
+            startActivity(i);
         }
-        startActivity(new Intent(getApplicationContext(),Studentsubs.class));
-
     }
 }
 

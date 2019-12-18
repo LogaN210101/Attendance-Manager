@@ -73,7 +73,7 @@
 
     </RadioGroup>
 
-    <TextView
+    <Button
         android:id="@+id/proceed"
         android:layout_width="124dp"
         android:layout_height="42dp"
@@ -86,7 +86,7 @@
         app:layout_constraintHorizontal_bias="0.79"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintVertical_bias="0.603"/>
 
     <EditText
         android:id="@+id/name"

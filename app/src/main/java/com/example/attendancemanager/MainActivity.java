@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.graphics.Color.BLUE;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth auth;
     EditText ue,up;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Login Page");
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         sign=findViewById(R.id.signin);
         ue=findViewById(R.id.email);
         up=findViewById(R.id.password);
@@ -122,8 +127,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-       /*Intent it=new Intent(MainActivity.this,Login.class);
-       startActivity(it);
-       */
     }
 }

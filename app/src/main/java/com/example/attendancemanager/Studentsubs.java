@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,11 +13,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 public class Studentsubs extends AppCompatActivity {
     private Button save;
     private CheckBox MATHS,PHYS,PHLAB,CHEM,CHLAB,ELEC,ELECLAB,ECE,ECELAB,MECH,MECHLAB,HMTS,HMTSLAB,CSEN,CSLAB;
-    String subjects[]=new String[14],Subs="";
+    String subjects[]=new String[15],Subs="";
     int i=0,a=0;
+    String info,clgr,clg;
+    DatabaseReference fd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,12 @@ public class Studentsubs extends AppCompatActivity {
         CSEN=findViewById(R.id.computer);
         CSLAB=findViewById(R.id.cslab);
 
+        Intent intent=getIntent();
+        String test=intent.getStringExtra(Registration.g);
+        info= test.substring(0,test.indexOf('@'));
+        clg=test.substring((test.indexOf('@')+1),test.indexOf('!'));
+        clgr=test.substring(test.indexOf('!')+1);
+        fd=FirebaseDatabase.getInstance().getReference().child("Students").child(clg).child(info).child(clgr);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,15 +92,13 @@ public class Studentsubs extends AppCompatActivity {
             subjects[i++] = HMTS.getText().toString();
         if (HMTSLAB.isChecked())
             subjects[i++] = HMTSLAB.getText().toString();
-
-
-
     }
     void Dialog()
-    {    Checkon();
+    {
+        Checkon();
         Subs="";
         for(a=0;a<i;a++)
-        { Subs= Subs+subjects[a]+",";
+        { Subs= Subs+"\n"+subjects[a];
         }
         if(i==0)
         {
@@ -110,11 +119,15 @@ public class Studentsubs extends AppCompatActivity {
                 .setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                      // savedata(); Saved the subjects to database
+                      saveData(); //Saved the subjects to database
                     }
                 });
-        AlertDialog a=alt.create();
-        a.show();
+        AlertDialog a1=alt.create();
+        a1.show();
+    }
+    public void saveData()
+    {
+
     }
 }
 
