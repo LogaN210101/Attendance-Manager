@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -53,8 +54,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pd=new ProgressDialog(this);
         tvreg=findViewById(R.id.register);
         tvreg.setOnClickListener(this);
-        if(auth.getCurrentUser()!=null){
-            //calllogin();
+        SharedPreferences myobj =getSharedPreferences("MyData",MODE_PRIVATE);
+        String un=myobj.getString("Type",null);
+
+        if(un!=null) {
+            if (un.equals("Teacher")) {
+                finish();
+                Intent i = new Intent(MainActivity.this, TeacherPage.class);
+                startActivity(i);
+            }
+            if (un.equals("Student")) {
+                finish();
+                Intent i = new Intent(MainActivity.this, StudentPage.class);
+                startActivity(i);
+            }
         }
         db= FirebaseDatabase.getInstance().getReference().child("Types");
     }
