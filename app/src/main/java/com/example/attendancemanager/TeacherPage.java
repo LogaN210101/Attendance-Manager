@@ -13,7 +13,7 @@ public class TeacherPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_page);
+        setContentView(R.layout.activity_teachermain1);
         logout=findViewById(R.id.lg);
 
         logout.setOnClickListener(new View.OnClickListener() {
