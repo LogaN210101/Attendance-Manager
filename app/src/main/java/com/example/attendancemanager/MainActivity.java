@@ -121,14 +121,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds :dataSnapshot.getChildren()){
                     add a=ds.getValue(add.class);
-                    if(a.uname.indexOf("Student")>0)
+                    if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Student"))
                     {
 
                         finish();
                         startActivity(new Intent(getApplicationContext(),StudentPage.class));
 
                     }
-                    if(a.uname.indexOf("Teacher")>0)
+                    if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Teacher"))
                     {
 
                         finish();
