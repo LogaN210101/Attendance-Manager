@@ -123,15 +123,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     add a=ds.getValue(add.class);
                     if(a.uname.indexOf("Student")>0)
                     {
-                        //Call Student Activity
+
                         finish();
                         startActivity(new Intent(getApplicationContext(),StudentPage.class));
+
                     }
                     if(a.uname.indexOf("Teacher")>0)
                     {
-                        //Call Teacher activity class
+
                         finish();
                         startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+
                     }
                 }
             }

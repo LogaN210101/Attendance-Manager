@@ -16,7 +16,9 @@ Button logout;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_page);
         logout=findViewById(R.id.lg);
-
+        SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
+        obj.putString("Type","Student");
+        obj.commit();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,5 +29,10 @@ Button logout;
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

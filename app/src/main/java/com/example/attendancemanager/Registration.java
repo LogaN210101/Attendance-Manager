@@ -250,9 +250,7 @@ public class Registration extends AppCompatActivity {
             nm.setText("");
             clgname.setText("");
             finish();
-            SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
-            obj.putString("Type","Teacher");
-            obj.commit();
+
             Intent it=new Intent(Registration.this,TeacherPage.class);
             startActivity(it);
             Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
@@ -295,9 +293,7 @@ public class Registration extends AppCompatActivity {
             add a=new add((uname.getText().toString()).substring(0,(uname.getText().toString()).indexOf('@'))+"Student");
             ft.push().setValue(a);
             Toast.makeText(getApplicationContext(),"Few more Details remaining...",Toast.LENGTH_SHORT).show();
-            SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
-            obj.putString("Type","Student");
-            obj.commit();
+
             Intent i=new Intent(getApplicationContext(),Studentsubs.class);
             g=""+dep+sc+yr+"@"+clg+"!"+clgr;
             i.putExtra(g,g);

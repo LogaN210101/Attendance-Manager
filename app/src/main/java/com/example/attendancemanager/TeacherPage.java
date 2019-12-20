@@ -15,7 +15,9 @@ public class TeacherPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachermain1);
         logout=findViewById(R.id.lg);
-
+        SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
+        obj.putString("Type","Teacher");
+        obj.commit();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
