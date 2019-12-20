@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String useremail,userpassword;
     ProgressDialog pd;
     TextView tvreg;
+    int fl=0;
     private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(getApplicationContext(),"Password cannot be Blank",Toast.LENGTH_SHORT).show();
                 return;
             }
+            if(useremail.indexOf('@')<0)
+            {
+                Toast.makeText(getApplicationContext(), "Please enter a valid email", Toast.LENGTH_SHORT).show();
+                return;
+            }
             pd.setMessage("Logging in...");
             pd.show();
             auth.signInWithEmailAndPassword(useremail,userpassword)
@@ -99,7 +105,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                 calllogin();//Call User Page
                             } else {
-                                Toast.makeText(getApplicationContext(), "Login Unsuccessful. Please Check email and password", Toast.LENGTH_SHORT).show();
+
+                                db.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot ds :dataSnapshot.getChildren()){
+                                            add a=ds.getValue(add.class);
+                                            if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Student")) {
+                                                fl=1;
+                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                                            }
+                                            else if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Teacher")) {
+                                                fl=1;
+                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                        if(fl==0)
+                                        {
+                                            Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
                             }
 
                         }
@@ -123,14 +155,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     add a=ds.getValue(add.class);
                     if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Student"))
                     {
-
                         finish();
                         startActivity(new Intent(getApplicationContext(),StudentPage.class));
 
                     }
                     if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Teacher"))
                     {
-
                         finish();
                         startActivity(new Intent(getApplicationContext(),TeacherPage.class));
 
