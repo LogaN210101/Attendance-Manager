@@ -7,7 +7,7 @@ public class add
     {
 
     }
-    add(String n)
+    public add(String n)
     {
         uname=n;
     }

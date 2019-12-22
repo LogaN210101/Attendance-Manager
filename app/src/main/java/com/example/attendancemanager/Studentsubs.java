@@ -135,10 +135,17 @@ public class Studentsubs extends AppCompatActivity {
     {
         for(int q=0;q<i;q++)
         {
-            AllSub als=new AllSub("0","0");
-            fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(als);
+            add nsub=new add("0/0");
+            fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(nsub);
         }
-        Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration proces",Toast.LENGTH_LONG).show();
+        String allsubject="";
+        for(int q=0;q<i;q++)
+        {
+            allsubject=allsubject+subjects[q]+"/";
+        }
+        add aa=new add(allsubject);
+        fd.child(clg).child(info).child(clgr).child("All").setValue(aa);
+        Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration process",Toast.LENGTH_LONG).show();
         finish();
         startActivity(new Intent(Studentsubs.this,StudentPage.class));
         Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();

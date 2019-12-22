@@ -7,9 +7,9 @@ public class AllSub
     {
 
     }
-    AllSub(String p,String a)
+    public AllSub(String present,String absent)
     {
-        present=p;
-        absent=a;
+        this.present=present;
+        this.absent=absent;
     }
 }

@@ -113,16 +113,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                             add a=ds.getValue(add.class);
                                             if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Student")) {
                                                 fl=1;
-                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
                                             }
                                             else if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Teacher")) {
                                                 fl=1;
-                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         if(fl==0)
                                         {
-                                            Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
