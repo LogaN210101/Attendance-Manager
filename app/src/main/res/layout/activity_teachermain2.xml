@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/next"
         android:layout_width="124dp"
         android:layout_height="73dp"
         android:background="#536DFE"
@@ -18,61 +18,72 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
+        app:layout_constraintVertical_bias="0.904" />
 
     <TextView
         android:id="@+id/heading2"
         android:layout_width="319dp"
         android:layout_height="116dp"
-        android:text="Choose student detalis"
+        android:text="Choose class details"
         android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="0.068" />
 
-    <EditText
-        android:id="@+id/Stream"
-        android:layout_width="235dp"
-        android:layout_height="82dp"
-        android:ems="10"
-        android:hint="Enter Department"
-        android:inputType="textPersonName"
+    <Spinner
+        android:id="@+id/department"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.351" />
+        app:layout_constraintVertical_bias="0.362" />
 
     <EditText
         android:id="@+id/Papercode"
         android:layout_width="259dp"
-        android:layout_height="95dp"
+        android:layout_height="65dp"
         android:ems="10"
         android:hint="Enter papercode"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.302"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.528" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="264dp"
-        android:layout_height="91dp"
+        android:id="@+id/section"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Section"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.362" />
+
+    <EditText
+        android:id="@+id/batchyear"
+        android:layout_width="268dp"
+        android:layout_height="64dp"
         android:ems="10"
         android:hint="Enter batch year"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintVertical_bias="0.704" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

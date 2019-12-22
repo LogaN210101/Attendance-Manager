@@ -16,6 +16,8 @@
         <activity android:name=".StudentPage" />
         <activity android:name=".Studentsubs" />
         <activity android:name=".Registration" />
+        <activity android:name=".Teachermain2"/>
+        <activity android:name=".TakeAttendance"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
