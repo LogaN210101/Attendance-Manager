@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TeacherPage"></activity>
+        <activity android:name=".ChangeSub"></activity>
+        <activity android:name=".TeacherPage" />
         <activity android:name=".StudentPage" />
         <activity android:name=".Studentsubs" />
         <activity android:name=".Registration" />

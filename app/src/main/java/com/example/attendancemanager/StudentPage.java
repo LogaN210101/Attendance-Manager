@@ -34,9 +34,11 @@ private FirebaseAuth auth;
 private DatabaseReference db,dbs;
 String sub[];
 private String clg,clgr,dep,sec,yr;
-private int i=0,a=0;
+private int i=0;
 String email;
 private ProgressDialog pd;
+static  String g;
+Button cs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,13 @@ private ProgressDialog pd;
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         s="";
         viewnm();//Get Student details
+        cs=findViewById(R.id.button3);
+        cs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                change();
+            }
+        });
     }
     public void show(String n) {
         final String subject=n;
@@ -199,5 +208,31 @@ private ProgressDialog pd;
                 });
         AlertDialog a=alt.create();
         a.show();
+    }
+    public void change()
+    {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Alert!")
+                .setCancelable(false)
+                .setMessage("Are you sure you want to Change your Subjects? This will reset your attendance")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(StudentPage.this,ChangeSub.class);
+                        g=""+dep+sec+yr+"@"+clg+"!"+clgr;
+                        intent.putExtra(g,g);
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog a1=alt.create();
+        a1.show();
+
     }
 }
