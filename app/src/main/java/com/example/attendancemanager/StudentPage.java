@@ -47,6 +47,7 @@ Button cs;
         setContentView(R.layout.activity_student_page);
         getSupportActionBar().setTitle("Hello Student");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+        Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
         logout=findViewById(R.id.lg);
         auth=FirebaseAuth.getInstance();
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();

@@ -32,7 +32,7 @@ public class ChangeSub extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_studentsubs);
-        getSupportActionBar().setTitle("Registration Page");
+        getSupportActionBar().setTitle("Change Subjects");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         save=findViewById(R.id.saveinfo);
         //Linking all the subjects
@@ -145,10 +145,9 @@ public class ChangeSub extends AppCompatActivity {
         }
         add aa=new add(allsubject);
         fd.child(clg).child(info).child(clgr).child("All").setValue(aa);
-        Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration process",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"All Set-up. You have successfully changed the subjects",Toast.LENGTH_LONG).show();
         finish();
         startActivity(new Intent(ChangeSub.this,StudentPage.class));
-        Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
     }
     @Override
     public void onBackPressed() {
