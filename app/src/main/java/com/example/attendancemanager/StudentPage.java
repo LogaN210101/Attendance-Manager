@@ -12,9 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,7 +63,7 @@ Button cs;
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         s="";
         viewnm();//Get Student details
-        cs=findViewById(R.id.button3);
+        cs=findViewById(R.id.changesub);
         cs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
