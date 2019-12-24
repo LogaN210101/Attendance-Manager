@@ -11,7 +11,7 @@
         android:id="@+id/heading3"
         android:layout_width="313dp"
         android:layout_height="70dp"
-        android:text="Take Attendance"
+        android:text="View Attendance"
         android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
