@@ -7,83 +7,24 @@
 
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="124dp"
-        android:layout_height="73dp"
-        android:background="#536DFE"
-        android:text="Proceed"
+    <ScrollView
+        android:layout_width="670dp"
+        android:layout_height="318dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintTop_toTopOf="parent">>
 
-    <TextView
-        android:id="@+id/heading2"
-        android:layout_width="498dp"
-        android:layout_height="54dp"
-        android:text="Choose class details"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.068" />
-
-    <Spinner
-        android:id="@+id/department"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.234"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
-
-    <EditText
-        android:id="@+id/Papercode"
-        android:layout_width="259dp"
-        android:layout_height="65dp"
-        android:ems="10"
-        android:hint="Enter papercode"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
-
-    <EditText
-        android:id="@+id/section"
-        android:layout_width="75dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="Section"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
-
-    <EditText
-        android:id="@+id/batchyear"
-        android:layout_width="268dp"
-        android:layout_height="64dp"
-        android:ems="10"
-        android:hint="Enter batch year"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.286"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </ScrollView>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="150dp"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="50dp"
 
 </androidx.constraintlayout.widget.ConstraintLayout>

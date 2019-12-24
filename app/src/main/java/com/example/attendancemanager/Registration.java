@@ -157,6 +157,7 @@ public class Registration extends AppCompatActivity {
         }
 
         progress.setMessage("Registering user...");
+        progress.setCancelable(false);
         progress.show();
         firebaseAuth.createUserWithEmailAndPassword(Email, Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

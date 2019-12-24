@@ -9,69 +9,121 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="315dp"
-        android:layout_height="80dp"
-        android:text="Choose"
+        android:layout_width="519dp"
+        android:layout_height="44dp"
+        android:text="    Enter Class details"
         android:textAlignment="center"
-        android:textSize="50sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <RadioGroup
         android:id="@+id/radiogroup"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
+        android:layout_width="148dp"
+        android:layout_height="71dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809">
+        app:layout_constraintVertical_bias="0.585">
 
         <RadioButton
             android:id="@+id/radioButton3"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
             android:text="Take Attendance"
-            android:textSize="30sp" />
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton4"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
             android:text="View Attendance"
-            android:textSize="30sp" />
+            android:textSize="14sp" />
     </RadioGroup>
+
+    <Spinner
+        android:id="@+id/department"
+        android:layout_width="207dp"
+        android:layout_height="53dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269" />
+
+    <EditText
+        android:id="@+id/Papercode"
+        android:layout_width="266dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:hint="Enter papercode"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576" />
+
+    <EditText
+        android:id="@+id/section"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="Section"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <EditText
+        android:id="@+id/batchyear"
+        android:layout_width="268dp"
+        android:layout_height="64dp"
+        android:ems="10"
+        android:hint="Enter batch year"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876" />
 
     <Button
         android:id="@+id/lg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="89dp"
+        android:layout_height="50dp"
         android:backgroundTint="#FC4343"
         android:text="Log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/next"
-        android:layout_width="124dp"
-        android:layout_height="73dp"
+        android:layout_width="108dp"
+        android:layout_height="43dp"
         android:background="#536DFE"
-        android:text="Proceed"
+        android:text="Proceed ►"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintHorizontal_bias="0.862"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.871" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
