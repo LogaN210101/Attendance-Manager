@@ -1,7 +1,9 @@
 package com.example.attendancemanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,14 +17,24 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class TeacherPage extends AppCompatActivity {
     Button logout,proceed;
     private RadioGroup r;
     private RadioButton opt;
     private Spinner dpt;
-    Button nxt;
     EditText paper, year,sec;
-    String dept;
+    String sub,sc,yr,dept,clg;
+    DatabaseReference db;
+    String email;
+    static String s="";
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +43,12 @@ public class TeacherPage extends AppCompatActivity {
         proceed=findViewById(R.id.next);
         r=findViewById(R.id.radiogroup);
         dpt=findViewById(R.id.department);
-        nxt=findViewById(R.id.next);
         paper=findViewById(R.id.Papercode);
         year=findViewById(R.id.batchyear);
         sec=findViewById(R.id.section);
+        auth=FirebaseAuth.getInstance();
+        email=auth.getCurrentUser().getEmail();
+        db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dpt.setAdapter(adapter1);
@@ -47,12 +61,6 @@ public class TeacherPage extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-        nxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TeacherPage.this,TakeAttendance.class));
             }
         });
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
@@ -73,6 +81,7 @@ public class TeacherPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 opt = findViewById(r.getCheckedRadioButtonId());
+                getInfo();
                 if(opt==null)
                 {
                     Toast.makeText(getApplicationContext(),"Select any one task and proceed",Toast.LENGTH_SHORT).show();
@@ -80,7 +89,9 @@ public class TeacherPage extends AppCompatActivity {
                 }
                 if(opt.getText().toString().equals("Take Attendance"))
                 {
-                    startActivity(new Intent(TeacherPage.this,Teachermain2.class));
+                    Intent intent=new Intent(TeacherPage.this,Teachermain2.class);
+                    intent.putExtra(s,s);
+                    startActivity(intent);
                     finish();
                 }
                 if(opt.getText().toString().equals("View Attendance"))
@@ -94,5 +105,36 @@ public class TeacherPage extends AppCompatActivity {
             }
         });
 
+    }
+    public void getInfo()
+    {
+        Spinner spinner =findViewById(R.id.department);
+        String dep=spinner.getSelectedItem().toString().trim();
+        sub=paper.getText().toString();
+        sc=sec.getText().toString();
+        yr=year.getText().toString();
+        if(dep.equals("Department") || sub.equals("") || sc.equals("") || yr.equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        getCollege();
+        s=s+"!"+dep+sc+yr;
+    }
+    public void getCollege()
+    {
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                AddS ads=dataSnapshot.getValue(AddS.class);
+                clg=ads.college;
+                s=s+clg;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
