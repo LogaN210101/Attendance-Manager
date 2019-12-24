@@ -30,11 +30,9 @@ public class TeacherPage extends AppCompatActivity {
     private RadioButton opt;
     private Spinner dpt;
     EditText paper, year,sec;
-    String sub,sc,yr,dept,clg;
+    String sub,sc,yr,dept;
     DatabaseReference db;
-    String email;
     static String s="";
-    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +44,6 @@ public class TeacherPage extends AppCompatActivity {
         paper=findViewById(R.id.Papercode);
         year=findViewById(R.id.batchyear);
         sec=findViewById(R.id.section);
-        auth=FirebaseAuth.getInstance();
-        email=auth.getCurrentUser().getEmail();
-        db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dpt.setAdapter(adapter1);
@@ -118,23 +113,7 @@ public class TeacherPage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        getCollege();
-        s=s+"!"+dep+sc+yr;
+        s=""+"!"+dep+sc+yr+"@"+sub;
     }
-    public void getCollege()
-    {
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AddS ads=dataSnapshot.getValue(AddS.class);
-                clg=ads.college;
-                s=s+clg;
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 }
