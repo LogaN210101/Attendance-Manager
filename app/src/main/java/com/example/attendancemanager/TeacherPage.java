@@ -103,11 +103,11 @@ public class TeacherPage extends AppCompatActivity {
                     finish();
                 }
                 if(opt.getText().toString().equals("View Attendance"))
-                {/*
+                {
                     Intent intent = new Intent(TeacherPage.this,TakeAttendance.class);
                     intent.putExtra(s,s);
                     startActivity(intent);
-                    finish();*/
+                    finish();
                 }
 
             }
