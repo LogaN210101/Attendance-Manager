@@ -2,8 +2,11 @@ package com.example.attendancemanager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.graphics.Color.BLUE;
+
 public class Teachermain2 extends AppCompatActivity implements View.OnClickListener {
 
     String clg,info,sub,s1="";
@@ -40,7 +45,11 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain2);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+        getSupportActionBar().setTitle("Attendance for the current class");
         auth=FirebaseAuth.getInstance();
         email=auth.getCurrentUser().getEmail();
         dbs= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));

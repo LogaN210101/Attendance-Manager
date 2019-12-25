@@ -78,6 +78,14 @@ Button cs;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 add als = dataSnapshot.getValue(add.class);
                 s = s + "\n" + subject + " = " + als.uname;
+                int pre=Integer.parseInt(als.uname.substring(0,als.uname.indexOf('/')));
+                int tot=Integer.parseInt(als.uname.substring(als.uname.indexOf('/')+1));
+                int percent=0;
+                if(tot==0)
+                    percent=0;
+                else
+                    percent=pre*100/tot;
+                s=s+" = "+percent+"%";
                 tv.setText(s);
                 pd.dismiss();
             }
@@ -146,7 +154,7 @@ Button cs;
                 sec=ads.section;
                 dep=ads.dept;
                 yr=ads.year;
-                s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"YOUR ATTENDANCE";
+                s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"\n"+"YOUR ATTENDANCE";
                 dbs=FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
                         .child(dep+sec+yr).child(clgr);
                 subcheck();

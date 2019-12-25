@@ -112,7 +112,6 @@ public class TeacherPage extends AppCompatActivity {
 
             }
         });
-
     }
     public void getInfo()
     {

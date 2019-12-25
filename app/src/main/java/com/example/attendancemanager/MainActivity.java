@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                                        Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
