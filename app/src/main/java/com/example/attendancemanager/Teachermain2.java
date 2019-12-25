@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Teachermain2 extends AppCompatActivity {
+public class Teachermain2 extends AppCompatActivity implements View.OnClickListener {
 
     String clg,info,sub,s1="";
     String email;
@@ -31,7 +32,9 @@ public class Teachermain2 extends AppCompatActivity {
     DatabaseReference db,dbs;
     TableLayout t;
     int i=0;
+    Button save;
     String student[][];
+    CheckBox gcb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,9 @@ public class Teachermain2 extends AppCompatActivity {
         info=test.substring(test.indexOf('!')+1,test.indexOf('@'));
         sub=test.substring(test.indexOf('@')+1);
         t=findViewById(R.id.table);
+        save=findViewById(R.id.button);
         getCollege();
+        save.setOnClickListener(this);
     }
     void show()
     {
@@ -61,6 +66,7 @@ public class Teachermain2 extends AppCompatActivity {
                     tv1.setText(a);
                     tv1.setTextSize(30);
                     CheckBox cb=new CheckBox(Teachermain2.this);
+                    cb.setId(Integer.parseInt(a));
                     tr.addView(cb);
                     tr.addView(tv1);
                     t.addView(tr);
@@ -157,5 +163,34 @@ public class Teachermain2 extends AppCompatActivity {
             }
         }
         return fl;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==save)
+        {
+            for(int j=0;j<student[0].length;j++)
+            {
+                gcb=findViewById(Integer.parseInt(student[0][j]));
+                if(gcb.isChecked())
+                {
+                    student[1][j]=""+((Integer.parseInt(student[1][j]))+1);
+                }
+                student[2][j]=""+((Integer.parseInt(student[2][j]))+1);
+            }
+            saveit();
+        }
+    }
+    public void saveit()
+    {
+        for(int j=0;j<student[0].length;j++)
+        {
+            add a3=new add((student[1][j]+"/"+student[2][j]));
+            db.child(student[0][j]).child(sub).setValue(a3);
+
+        }
+        Toast.makeText(getApplicationContext(),"Attendace for this class completed",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+        finish();
     }
 }

@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,19 +27,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.graphics.Color.BLUE;
+
 public class TeacherPage extends AppCompatActivity {
     Button logout,proceed;
     private RadioGroup r;
     private RadioButton opt;
     private Spinner dpt;
     EditText paper, year,sec;
-    String sub,sc,yr,dept;
+    String sub,sc,yr,dept,tname,email;
     DatabaseReference db;
+    FirebaseAuth auth;
     static String s="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain1);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         logout=findViewById(R.id.lg);
         proceed=findViewById(R.id.next);
         r=findViewById(R.id.radiogroup);
@@ -44,6 +53,10 @@ public class TeacherPage extends AppCompatActivity {
         paper=findViewById(R.id.Papercode);
         year=findViewById(R.id.batchyear);
         sec=findViewById(R.id.section);
+        auth=FirebaseAuth.getInstance();
+        email=auth.getCurrentUser().getEmail();
+        db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
+        showname();
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dpt.setAdapter(adapter1);
@@ -90,11 +103,11 @@ public class TeacherPage extends AppCompatActivity {
                     finish();
                 }
                 if(opt.getText().toString().equals("View Attendance"))
-                {
-                   /*
-                    startActivity(TeacherPage.this,ViewAttendance.class);
-                    finish();
-                    */
+                {/*
+                    Intent intent = new Intent(TeacherPage.this,TakeAttendance.class);
+                    intent.putExtra(s,s);
+                    startActivity(intent);
+                    finish();*/
                 }
 
             }
@@ -115,5 +128,19 @@ public class TeacherPage extends AppCompatActivity {
         }
         s=""+"!"+dep+sc+yr+"@"+sub;
     }
+    public void showname()
+    {
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                AddS aa=dataSnapshot.getValue(AddS.class);
+                getSupportActionBar().setTitle("Welcome "+aa.name);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
