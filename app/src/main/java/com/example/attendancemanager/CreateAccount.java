@@ -101,7 +101,8 @@ public class CreateAccount extends AppCompatActivity {
                     });
 
         } else {
-            Toast.makeText(getApplicationContext(), "Password Mismatch", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "Password Mismatch", Toast.LENGTH_SHORT).show();
+            cpass.setText("");
         }
     }
 }
