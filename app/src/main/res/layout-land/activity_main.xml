@@ -22,33 +22,41 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.795" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="261dp"
-        android:layout_height="43dp"
-        android:ems="10"
-        android:hint="Email ID"
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="260dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.653"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383" />
+        app:layout_constraintVertical_bias="0.484"
+        app:passwordToggleEnabled="true">
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="266dp"
-        android:layout_height="47dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:hint="Enter Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="260dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.554" />
+        app:layout_constraintVertical_bias="0.273">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="260dp"
+            android:layout_height="50dp"
+            android:hint="Enter Email" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
 
