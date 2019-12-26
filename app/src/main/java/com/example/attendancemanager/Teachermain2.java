@@ -81,8 +81,9 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                     tr.addView(cb);
                     tr.addView(tv1);
                     t.addView(tr);
-                    student[0][i]=a;
-                    i++;
+                    try{
+                    student[0][i++]=a;}
+                    catch (Exception e){}
                 }
                 defAttendance();
             }
@@ -198,15 +199,14 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
         {
             add a3=new add((student[1][j]+"/"+student[2][j]));
             db.child(student[0][j]).child(sub).setValue(a3);
-
         }
         Toast.makeText(getApplicationContext(),"Attendance for this class completed",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+        startActivity(new Intent(Teachermain2.this,TeacherPage.class));
         finish();
     }
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+        startActivity(new Intent(Teachermain2.this,TeacherPage.class));
         finish();
     }
 }

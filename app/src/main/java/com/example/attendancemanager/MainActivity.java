@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v==tvreg)
         {
+            tvreg.setVisibility(View.INVISIBLE);
             Intent it=new Intent(MainActivity.this,CreateAccount.class);
             finish();
             startActivity(it); //Registration Activity

@@ -91,7 +91,10 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
                             t3.setTextSize(25);
                             tv1.setText(a+"\t\t\t");
                             t2.setText("Attended: "+present+"\t\t\t");
-                            t3.setText(present*100/total+"%"+"\n");
+                            if(total>0)
+                                t3.setText(present*100/total+"%"+"\n");
+                            else
+                                t3.setText("0%"+"\n");
                             tv2.setText("Total Classes: "+total);
                             tr.addView(tv1);
                             tr.addView(t2);

@@ -27,7 +27,7 @@ import static android.graphics.Color.BLUE;
 
 public class CreateAccount extends AppCompatActivity {
 
-    private EditText uname,upass;
+    private EditText uname,upass,cpass;
     private RadioGroup r;
     private RadioButton teacher, student, op;
     Button next;
@@ -53,11 +53,11 @@ public class CreateAccount extends AppCompatActivity {
         next = findViewById(R.id.proceed);
         progress = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
+        cpass=findViewById(R.id.confirmpassword);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                check();
+            public void onClick(View v) {  check();
             }
         });
 
@@ -65,41 +65,43 @@ public class CreateAccount extends AppCompatActivity {
     void check() {
         Email = uname.getText().toString().trim();
         Password = upass.getText().toString().trim();
-        op = findViewById(r.getCheckedRadioButtonId());
-        if(op==null)
-        {
-            Toast.makeText(getApplicationContext(),"Select any one account type and proceed",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password)) {
-            Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        if (cpass.getText().toString().equals(Password)) {
+            op = findViewById(r.getCheckedRadioButtonId());
+            if (op == null) {
+                Toast.makeText(getApplicationContext(), "Select any one account type and proceed", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(Email) || TextUtils.isEmpty(Password)) {
+                Toast.makeText(this, "Please enter your email and password", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-        progress.setMessage("Registering user...");
-        progress.setCancelable(false);
-        progress.show();
-        firebaseAuth.createUserWithEmailAndPassword(Email, Password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(CreateAccount.this, "New Account Created", Toast.LENGTH_SHORT).show();
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent i=new Intent(getApplicationContext(),Registration.class);
-                                    Type=Email+"-"+op.getText().toString().trim();
-                                    i.putExtra(Type,Type);
-                                    startActivity(i);
-                                }
-                            },500);
-                        } else
-                            Toast.makeText(CreateAccount.this, "Oops! Something's not right. Please try again", Toast.LENGTH_SHORT).show();
-                        progress.dismiss();
-                    }
-                });
+            progress.setMessage("Registering user...");
+            progress.setCancelable(false);
+            progress.show();
+            firebaseAuth.createUserWithEmailAndPassword(Email, Password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(CreateAccount.this, "New Account Created", Toast.LENGTH_SHORT).show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent i = new Intent(getApplicationContext(), Registration.class);
+                                        Type = Email + "-" + op.getText().toString().trim();
+                                        i.putExtra(Type, Type);
+                                        startActivity(i);
+                                    }
+                                }, 500);
+                            } else
+                                Toast.makeText(CreateAccount.this, "Oops! Something's not right. Please try again", Toast.LENGTH_SHORT).show();
+                            progress.dismiss();
+                        }
+                    });
 
+        } else {
+            Toast.makeText(getApplicationContext(), "Password Mismatch", Toast.LENGTH_SHORT);
+        }
     }
-
 }
