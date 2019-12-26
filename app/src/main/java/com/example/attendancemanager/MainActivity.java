@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v==tvreg)
         {
-            Intent it=new Intent(MainActivity.this,Registration.class);
+            Intent it=new Intent(MainActivity.this,CreateAccount.class);
             finish();
             startActivity(it); //Registration Activity
         }

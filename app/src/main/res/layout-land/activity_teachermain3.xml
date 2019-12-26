@@ -8,8 +8,8 @@
     tools:context=".TakeAttendance">
 
     <ScrollView
-        android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_width="628dp"
+        android:layout_height="265dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
