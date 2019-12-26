@@ -35,7 +35,7 @@ public class TeacherPage extends AppCompatActivity {
     private RadioButton opt;
     private Spinner dpt;
     EditText paper, year,sec;
-    String sub,sc,yr,dept,tname,email;
+    static String sub="",sc="",yr="",dept="",email="";
     DatabaseReference db;
     FirebaseAuth auth;
     static String s="";
@@ -74,6 +74,7 @@ public class TeacherPage extends AppCompatActivity {
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Teacher");
         obj.commit();
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,35 +86,40 @@ public class TeacherPage extends AppCompatActivity {
 
             }
         });
+
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 opt = findViewById(r.getCheckedRadioButtonId());
-                getInfo();
+
                 if(opt==null)
                 {
                     Toast.makeText(getApplicationContext(),"Select any one task and proceed",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(opt.getText().toString().equals("Take Attendance"))
+                {    if(getInfo())
+                    {       Intent intent=new Intent(TeacherPage.this,Teachermain2.class);
+                             intent.putExtra(s,s);
+                         startActivity(intent);
+                        finish();
+                    }
+                }
+                if(opt.getText().toString().equals("View Attendance"))
+                {    if(getInfo())
                 {
-                    Intent intent=new Intent(TeacherPage.this,Teachermain2.class);
-                    intent.putExtra(s,s);
+                    Intent intent = new Intent(TeacherPage.this, TakeAttendance.class);
+                    intent.putExtra(s, s);
                     startActivity(intent);
                     finish();
                 }
-                if(opt.getText().toString().equals("View Attendance"))
-                {
-                    Intent intent = new Intent(TeacherPage.this,TakeAttendance.class);
-                    intent.putExtra(s,s);
-                    startActivity(intent);
-                    finish();
                 }
 
             }
         });
     }
-    public void getInfo()
+
+    public boolean getInfo()
     {
         Spinner spinner =findViewById(R.id.department);
         String dep=spinner.getSelectedItem().toString().trim();
@@ -123,9 +129,10 @@ public class TeacherPage extends AppCompatActivity {
         if(dep.equals("Department") || sub.equals("") || sc.equals("") || yr.equals(""))
         {
             Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
         s=""+"!"+dep+sc+yr+"@"+sub;
+        return true;
     }
     public void showname()
     {
@@ -142,4 +149,5 @@ public class TeacherPage extends AppCompatActivity {
             }
         });
     }
+
 }
