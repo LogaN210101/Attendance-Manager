@@ -84,7 +84,10 @@ Button cs;
                 if(tot==0)
                     percent=0;
                 else
+                {
                     percent=pre*100/tot;
+                }
+
                 s=s+" = "+percent+"%";
                 tv.setText(s);
                 pd.dismiss();
@@ -133,10 +136,9 @@ Button cs;
             {
                 s1=s1+ch;
             }
-
         }
-
     }
+
     public void viewnm()
     {
         pd.setMessage("Loading...");

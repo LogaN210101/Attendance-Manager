@@ -1,9 +1,11 @@
 package com.example.attendancemanager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -105,4 +107,12 @@ public class CreateAccount extends AppCompatActivity {
             cpass.setText("");
         }
     }
+    @Override
+    public void onBackPressed() {
+
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
+
+    }
 }
+

@@ -81,9 +81,10 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                     tr.addView(cb);
                     tr.addView(tv1);
                     t.addView(tr);
-
-                    student[0][i++]=a;
-
+                    try {
+                        student[0][i++] = a;
+                    }
+                    catch(Exception e){}
                 }
                 defAttendance();
             }
