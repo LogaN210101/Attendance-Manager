@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -39,6 +41,7 @@ public class TeacherPage extends AppCompatActivity {
     DatabaseReference db;
     FirebaseAuth auth;
     static String s="";
+    CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,11 @@ public class TeacherPage extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain1);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
+
         logout=findViewById(R.id.lg);
         proceed=findViewById(R.id.next);
         r=findViewById(R.id.radiogroup);
@@ -150,4 +158,9 @@ public class TeacherPage extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
+    }
 }

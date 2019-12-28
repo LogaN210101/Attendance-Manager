@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +28,7 @@ public class ChangeSub extends AppCompatActivity {
     int i=0,a=0;
     String info,clgr,clg;
     DatabaseReference fd;
+    CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,11 @@ public class ChangeSub extends AppCompatActivity {
         getSupportActionBar().setTitle("Change Subjects");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         save=findViewById(R.id.saveinfo);
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
+
         //Linking all the subjects
         MATHS=findViewById(R.id.maths);
         PHYS=findViewById(R.id.physics);
@@ -163,6 +171,12 @@ public class ChangeSub extends AppCompatActivity {
                 });
         AlertDialog a=alt.create();
         a.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
     }
 }
 

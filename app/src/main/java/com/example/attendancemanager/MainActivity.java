@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressDialog pd;
     TextView tvreg;
     int fl=0;
+    CheckInternet checkInternet;
     private DatabaseReference db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Login Page");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
+
         sign=findViewById(R.id.signin);
         ue=findViewById(R.id.email);
         up=findViewById(R.id.password);
@@ -195,5 +203,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
         AlertDialog a=alt.create();
         a.show();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
     }
 }

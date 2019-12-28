@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import android.view.View;
@@ -40,6 +42,7 @@ public class Registration extends AppCompatActivity {
     static String g="";
     String f,test,uname, name, dept, sc, clg, yr,clgr;
     DatabaseReference ft,fs,fu;
+    CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,10 @@ public class Registration extends AppCompatActivity {
          f=intent.getStringExtra(CreateAccount.Type);
          uname=f.substring(0,f.indexOf('-'));
          test=f.substring(f.indexOf('-')+1);
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
 
         ft=FirebaseDatabase.getInstance().getReference().child("Types"); //Database for Account Type
         fs=FirebaseDatabase.getInstance().getReference().child("Student"); //Database for students
@@ -220,6 +227,12 @@ public class Registration extends AppCompatActivity {
             AlertDialog a1 = alt.create();
             a1.show();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
     }
 }
 

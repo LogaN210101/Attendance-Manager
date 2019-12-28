@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +39,7 @@ String email;
 private ProgressDialog pd;
 static  String g;
 Button cs;
+CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,11 @@ Button cs;
         setContentView(R.layout.activity_student_page);
         getSupportActionBar().setTitle("Hello Student");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
+
         Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
         logout=findViewById(R.id.lg);
         auth=FirebaseAuth.getInstance();
@@ -243,5 +251,11 @@ Button cs;
         AlertDialog a1=alt.create();
         a1.show();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
     }
 }

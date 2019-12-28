@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -35,6 +37,7 @@ public class CreateAccount extends AppCompatActivity {
     Button next;
     static String Email,Password,Type;
     private ProgressDialog progress;
+    CheckInternet checkInternet;
 
     private FirebaseAuth firebaseAuth;
     @Override
@@ -45,6 +48,10 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         getSupportActionBar().setTitle("Create Your Account");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
+        checkInternet=new CheckInternet();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(checkInternet,intentFilter);
 
         //First UI details to appear
         uname = findViewById(R.id.email);
@@ -113,6 +120,12 @@ public class CreateAccount extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(checkInternet);
     }
 }
 
