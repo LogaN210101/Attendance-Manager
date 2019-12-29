@@ -25,7 +25,7 @@ public class CheckInternet extends BroadcastReceiver {
             {
                 if(a1!=null)
                     a1.dismiss();
-                Toast.makeText(context, "Connected", Toast.LENGTH_LONG).show();
+
             }
             else
             {
@@ -36,6 +36,7 @@ public class CheckInternet extends BroadcastReceiver {
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+
 
                             }
                         })

@@ -58,7 +58,7 @@ CheckInternet checkInternet;
         auth=FirebaseAuth.getInstance();
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Student");
-        obj.commit();
+        obj.apply();
         pd=new ProgressDialog(this);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ CheckInternet checkInternet;
                 s = s + "\n" + subject + " = " + als.uname;
                 int pre=Integer.parseInt(als.uname.substring(0,als.uname.indexOf('/')));
                 int tot=Integer.parseInt(als.uname.substring(als.uname.indexOf('/')+1));
-                int percent=0;
+                int percent;
                 if(tot==0)
                     percent=0;
                 else
@@ -195,7 +195,7 @@ CheckInternet checkInternet;
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
                         obj.putString("Type",null);
-                        obj.commit();
+                        obj.apply();
                         auth.signOut();
                         startActivity(new Intent(StudentPage.this,MainActivity.class));
                         finish();
@@ -210,7 +210,7 @@ CheckInternet checkInternet;
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
         alt.setTitle("Alert!")
                 .setCancelable(false)
-                .setMessage("Are you sure you want to exit?")
+                .setMessage("Are you sure you want to exit without logging out?")
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
