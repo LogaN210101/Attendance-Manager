@@ -1,15 +1,20 @@
 package com.example.attendancemanager;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import static android.graphics.Color.BLUE;
 
 public class TeacherPage extends AppCompatActivity {
-    Button logout,proceed;
+    Button proceed;
     private RadioGroup r;
     private RadioButton opt;
     private Spinner dpt;
@@ -53,8 +58,6 @@ public class TeacherPage extends AppCompatActivity {
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
-
-        logout=findViewById(R.id.lg);
         proceed=findViewById(R.id.next);
         r=findViewById(R.id.radiogroup);
         dpt=findViewById(R.id.department);
@@ -82,19 +85,6 @@ public class TeacherPage extends AppCompatActivity {
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Teacher");
         obj.commit();
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
-                obj.putString("Type",null);
-                obj.commit();
-                startActivity(new Intent(TeacherPage.this,MainActivity.class));
-                finish();
-
-            }
-        });
-
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,5 +152,76 @@ public class TeacherPage extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(checkInternet);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inf=getMenuInflater();
+        inf.inflate(R.menu.teacher_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.item1: {
+                finish();
+                startActivity(new Intent(getApplicationContext(),TeacherEditAccount.class));
+                break;
+            }
+            case R.id.item2:
+            {
+                logout();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public void logout()
+    {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Alert!")
+                .setCancelable(false)
+                .setMessage("Are you sure you want to Logout?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
+                        obj.putString("Type",null);
+                        obj.commit();
+                        auth.signOut();
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        finish();
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
+    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Alert!")
+                .setCancelable(false)
+                .setMessage("Are you sure you want to exit without logging out?")
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
 }

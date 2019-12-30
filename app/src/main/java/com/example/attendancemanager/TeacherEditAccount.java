@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static android.graphics.Color.BLUE;
 
-public class StudentEditAccount extends AppCompatActivity {
+public class TeacherEditAccount extends AppCompatActivity {
     private EditText nm,clgname,clgroll,sec,yer,teacherdept;
     private Spinner dpt;
     private Button sv;
@@ -40,11 +40,12 @@ public class StudentEditAccount extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_registration);
-        getSupportActionBar().setTitle("Edit Account");
+        getSupportActionBar().setTitle("Registration Page");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
         auth=FirebaseAuth.getInstance();
         uname=auth.getCurrentUser().getEmail();
-        test="Student";
+        test="Teacher";
 
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -78,16 +79,6 @@ public class StudentEditAccount extends AppCompatActivity {
             teacherdept.setVisibility(View.VISIBLE);
 
         }
-        else if(test.equals("Student"))
-        {
-
-            dpt.setVisibility(View.VISIBLE);
-            clgroll.setVisibility(View.VISIBLE);
-            sec.setVisibility(View.VISIBLE);
-            yer.setVisibility(View.VISIBLE);
-
-        }
-
 
         //For drop down list
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
@@ -122,50 +113,42 @@ public class StudentEditAccount extends AppCompatActivity {
         yr=yer.getText().toString().trim();
         Spinner spinner=findViewById(R.id.department);
         String dep=spinner.getSelectedItem().toString().trim();
-        if(test.equals("Student"))
+        if(test.equals("Teacher"))
         {
-            if(yr.equals(""))
+            dep=teacherdept.getText().toString();
+            if(dep.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Please Enter your year of joining",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(clgr.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Enter Roll number",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(sc.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Section cannot be empty",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(dep.equals("Department") || dep.equals(("")))
-            {
-                Toast.makeText(getApplicationContext(),"Please Select Your Department",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please Select your department",Toast.LENGTH_SHORT).show();
                 return;
             }
             if(clg.equals(""))
             {
-                Toast.makeText(getApplicationContext(),"Please enter your college name",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Please enter college name",Toast.LENGTH_SHORT).show();
                 return;
             }
+
             if(name.equals(""))
             {
                 Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
                 return;
             }
-            AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
-            fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(ad);
-            Toast.makeText(getApplicationContext(),"Account Updated",Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(getApplicationContext(),StudentPage.class);
+            AddS a=new AddS(name,clg,dep,"","","");
+            fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(a);
+            Toast.makeText(getApplicationContext(),"Details Updated",Toast.LENGTH_SHORT).show();
+            nm.setText("");
+            clgname.setText("");
             finish();
-            startActivity(i);
+
+            Intent it=new Intent(getApplicationContext(),TeacherPage.class);
+            startActivity(it);
+            Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
+
         }
     }
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(getApplicationContext(),StudentPage.class));
+        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
     }
 
     @Override

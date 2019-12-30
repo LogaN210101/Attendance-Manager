@@ -99,20 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.876" />
-
-    <Button
-        android:id="@+id/lg"
-        android:layout_width="89dp"
-        android:layout_height="50dp"
-        android:backgroundTint="#FC4343"
-        android:text="Log out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.987"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
-
+    
     <Button
         android:id="@+id/next"
         android:layout_width="108dp"

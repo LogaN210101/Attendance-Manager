@@ -221,7 +221,7 @@ public class Registration extends AppCompatActivity {
                     .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();;
+                            dialog.dismiss();
                         }
                     });
             AlertDialog a1 = alt.create();
