@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +22,9 @@ import static android.graphics.Color.BLUE;
 
 public class Studentsubs extends AppCompatActivity {
     private Button save;
-    private CheckBox MATHS,PHYS,PHLAB,CHEM,CHLAB,ELEC,ELECLAB,ECE,ECELAB,MECH,MECHLAB,HMTS,HMTSLAB,CSEN,CSLAB;
+    private EditText[] subs=new EditText[12];
     String subjects[]=new String[15],Subs="";
-    int i=0,a=0;
+    int j,i=0,a=0;
     String info,clgr,clg;
     DatabaseReference fd;
     @Override
@@ -36,21 +37,12 @@ public class Studentsubs extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
         save=findViewById(R.id.saveinfo);
         //Linking all the subjects
-        MATHS=findViewById(R.id.maths);
-        PHYS=findViewById(R.id.physics);
-        PHLAB=findViewById(R.id.phylab);
-        CHEM=findViewById(R.id.chemistry);
-        CHLAB=findViewById(R.id.chemlab);
-        ELEC=findViewById(R.id.electrical);
-        ELECLAB=findViewById(R.id.eleclab);
-        ECE=findViewById(R.id.electronics);
-        ECELAB=findViewById(R.id.ecelab);
-        MECH=findViewById(R.id.mechanical);
-        MECHLAB=findViewById(R.id.mechlab);
-        HMTS=findViewById(R.id.humanities);
-        HMTSLAB=findViewById(R.id.hmtslab);
-        CSEN=findViewById(R.id.computer);
-        CSLAB=findViewById(R.id.cslab);
+        for(j=1;j<=12;j++)
+        {
+            String edtid="sub"+j;
+            int resId=getResources().getIdentifier(edtid,"id",getPackageName());
+            subs[j-1]=findViewById(resId);
+        }
 
         Intent intent=getIntent();
         String test=intent.getStringExtra(Registration.g);
@@ -68,36 +60,13 @@ public class Studentsubs extends AppCompatActivity {
     }
     public void Checkon() {
         i=0;
-        if (MATHS.isChecked())
-            subjects[i++] = MATHS.getText().toString();
-        if (PHYS.isChecked())
-            subjects[i++] = PHYS.getText().toString();
-        if (PHLAB.isChecked())
-            subjects[i++] = PHLAB.getText().toString();
-        if (CHEM.isChecked())
-            subjects[i++] = CHEM.getText().toString();
-        if (CHLAB.isChecked())
-            subjects[i++] = CHLAB.getText().toString();
-        if (ELEC.isChecked())
-            subjects[i++] = ELEC.getText().toString();
-        if (ELECLAB.isChecked())
-            subjects[i++] = ELECLAB.getText().toString();
-        if (ECE.isChecked())
-            subjects[i++] = ECE.getText().toString();
-        if (ECELAB.isChecked())
-            subjects[i++] = ECELAB.getText().toString();
-        if (CSEN.isChecked())
-            subjects[i++] = CSEN.getText().toString();
-        if (CSLAB.isChecked())
-            subjects[i++] = CSLAB.getText().toString();
-        if (MECH.isChecked())
-            subjects[i++] = MECH.getText().toString();
-        if (MECHLAB.isChecked())
-            subjects[i++] = MECHLAB.getText().toString();
-        if (HMTS.isChecked())
-            subjects[i++] = HMTS.getText().toString();
-        if (HMTSLAB.isChecked())
-            subjects[i++] = HMTSLAB.getText().toString();
+        for(j=0;j<12;j++)
+            if (!subs[j].getText().toString().trim().equals(""))
+            {  subjects[i] = subs[j].getText().toString();
+                i++;
+            }
+
+
     }
     void Dialog()
     {
