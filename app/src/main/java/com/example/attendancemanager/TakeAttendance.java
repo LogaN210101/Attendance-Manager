@@ -25,6 +25,7 @@ import static android.graphics.Color.BLUE;
 public class TakeAttendance extends AppCompatActivity {   //class to view attendance
     String clg,info,sub;
     String email;
+    int total2;
     FirebaseAuth auth;
     DatabaseReference db,dbs;
     TableLayout t;
@@ -95,7 +96,9 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
                                 t3.setText(present*100/total+"%"+"\n");
                             else
                                 t3.setText("0%"+"\n");
-                            tv2.setText("Total Classes: "+total);
+                            if(total>total2)
+                                total2=total;
+                            tv2.setText("Total Classes: "+total2);
                             tr.addView(tv1);
                             tr.addView(t2);
                             tr.addView(t3);
