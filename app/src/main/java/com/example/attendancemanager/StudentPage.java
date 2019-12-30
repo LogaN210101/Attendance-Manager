@@ -11,6 +11,9 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,7 +30,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import static android.graphics.Color.BLUE;
 public class StudentPage extends AppCompatActivity {
-Button logout;
 String s="";
 private TextView tv;
 private FirebaseAuth auth;
@@ -38,7 +40,6 @@ private int i=0;
 String email;
 private ProgressDialog pd;
 static  String g;
-Button cs;
 CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,36 +49,21 @@ CheckInternet checkInternet;
         setContentView(R.layout.activity_student_page);
         getSupportActionBar().setTitle("Hello Student");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
-
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
-
         Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
-        logout=findViewById(R.id.lg);
         auth=FirebaseAuth.getInstance();
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Student");
         obj.apply();
         pd=new ProgressDialog(this);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exit();
-            }
-        });
         tv=findViewById(R.id.textView);
         email=auth.getCurrentUser().getEmail();
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         s="";
         viewnm();//Get Student details
-        cs=findViewById(R.id.changesub);
-        cs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                change();
-            }
-        });
+
     }
     public void show(String n) {
         final String subject=n;
@@ -257,5 +243,31 @@ CheckInternet checkInternet;
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(checkInternet);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inf=getMenuInflater();
+        inf.inflate(R.menu.student_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.item1:
+                break;
+            case R.id.item2:
+            {
+                change();
+                break;
+            }
+            case R.id.item3:
+            {
+                exit();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
