@@ -156,10 +156,7 @@ public class StudentEditAccount extends AppCompatActivity {
             }
             AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
             fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(ad);
-            add a=new add((uname).substring(0,(uname).indexOf('@'))+"Student");
-            ft.push().setValue(a);
             Toast.makeText(getApplicationContext(),"Account Updated",Toast.LENGTH_SHORT).show();
-
             Intent i=new Intent(getApplicationContext(),StudentPage.class);
             finish();
             startActivity(i);
