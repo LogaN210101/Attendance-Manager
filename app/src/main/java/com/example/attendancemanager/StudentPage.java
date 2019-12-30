@@ -255,8 +255,11 @@ CheckInternet checkInternet;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.item1:
+            case R.id.item1: {
+                finish();
+                startActivity(new Intent(getApplicationContext(),StudentEditAccount.class));
                 break;
+            }
             case R.id.item2:
             {
                 change();
