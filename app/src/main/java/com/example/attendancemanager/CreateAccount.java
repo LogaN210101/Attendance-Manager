@@ -93,18 +93,30 @@ public class CreateAccount extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(CreateAccount.this, "New Account Created", Toast.LENGTH_SHORT).show();
-                                new Handler().postDelayed(new Runnable() {
+                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
-                                    public void run() {
-                                        Intent i = new Intent(getApplicationContext(), Registration.class);
-                                        Type = Email + "-" + op.getText().toString().trim();
-                                        i.putExtra(Type, Type);
-                                        startActivity(i);
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(CreateAccount.this, "New Account Created. Please Verify your email.", Toast.LENGTH_SHORT).show();
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Intent i = new Intent(getApplicationContext(), Registration.class);
+                                                    Type = Email + "-" + op.getText().toString().trim();
+                                                    i.putExtra(Type, Type);
+                                                    startActivity(i);
+                                                }
+                                            }, 500);
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(CreateAccount.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                }, 500);
+                                });
+
                             } else
-                                Toast.makeText(CreateAccount.this, "Oops! Something's not right. Please try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progress.dismiss();
                         }
                     });

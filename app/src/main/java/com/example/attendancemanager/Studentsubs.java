@@ -116,8 +116,7 @@ public class Studentsubs extends AppCompatActivity {
         fd.child(clg).child(info).child(clgr).child("All").setValue(aa);
         Toast.makeText(getApplicationContext(),"Congratulations! You have successfully completed the registration process",Toast.LENGTH_LONG).show();
         finish();
-        startActivity(new Intent(Studentsubs.this,StudentPage.class));
-        Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(Studentsubs.this,MainActivity.class));
     }
     @Override
     public void onBackPressed() {

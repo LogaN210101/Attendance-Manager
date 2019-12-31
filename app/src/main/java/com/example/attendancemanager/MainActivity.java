@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
-
         sign=findViewById(R.id.signin);
         ue=findViewById(R.id.email);
         up=findViewById(R.id.password);
@@ -86,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v==sign)
         {
+
+
             useremail=ue.getText().toString().trim();
             userpassword=up.getText().toString().trim();
             if(useremail.equals(""))
@@ -111,34 +112,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             pd.dismiss();
                             if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                calllogin();//Call User Page
+                                if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    calllogin();//Call User Page
+                                }
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(),"Please Verify your Email address",Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-
-                                db.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        for(DataSnapshot ds :dataSnapshot.getChildren()){
-                                            add a=ds.getValue(add.class);
-                                            if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Student")) {
-                                                fl=1;
-                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                                            }
-                                            else if(a.uname.contains(useremail.substring(0,useremail.indexOf('@'))+"Teacher")) {
-                                                fl=1;
-                                                Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                        if(fl==0)
-                                        {
-                                            Toast.makeText(getApplicationContext(), "Account doesn't exist. Please Register at first", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    }
-                                });
+                                Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
 
                             }
 

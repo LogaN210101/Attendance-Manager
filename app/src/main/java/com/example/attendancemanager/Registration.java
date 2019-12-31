@@ -161,9 +161,8 @@ public class Registration extends AppCompatActivity {
             clgname.setText("");
             finish();
 
-            Intent it=new Intent(Registration.this,TeacherPage.class);
+            Intent it=new Intent(Registration.this,MainActivity.class);
             startActivity(it);
-            Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
 
         }
         if(test.equals("Student"))

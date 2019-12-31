@@ -218,7 +218,7 @@ public class TeacherPage extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        finishAffinity();
                     }
                 });
         AlertDialog a=alt.create();
