@@ -27,6 +27,6 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
                 Home.this.finish();
             }
-        },3000);
+        },2000);
     }
 }

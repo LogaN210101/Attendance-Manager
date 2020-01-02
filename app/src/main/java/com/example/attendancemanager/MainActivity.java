@@ -13,6 +13,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressDialog pd;
     TextView tvreg;
     int fl=0;
+    static String ty="";
     CheckInternet checkInternet;
     private DatabaseReference db;
     @Override
@@ -191,5 +195,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(checkInternet);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inf=getMenuInflater();
+        inf.inflate(R.menu.login_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.item1: { ty="Credits";
+
+                Intent it=new Intent(getApplicationContext(),About.class);
+                it.putExtra(ty,ty);
+                startActivity(it);
+                break;
+            }
+            case R.id.item2:
+            {
+                ty="ReadMe";
+                Intent it=new Intent(getApplicationContext(),About.class);
+                it.putExtra(ty,ty);
+                startActivity(it);
+
+            }
+            case R.id.item3:
+            {
+                finish();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
