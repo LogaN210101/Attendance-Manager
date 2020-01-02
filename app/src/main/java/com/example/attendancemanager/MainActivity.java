@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent it=new Intent(getApplicationContext(),About.class);
                 it.putExtra(ty,ty);
                 startActivity(it);
+                break;
 
             }
             case R.id.item3:

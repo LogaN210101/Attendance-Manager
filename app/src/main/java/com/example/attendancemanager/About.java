@@ -25,7 +25,7 @@ public class About extends AppCompatActivity {
         tv=findViewById(R.id.abt);
         Intent intent=getIntent();
         type=intent.getStringExtra(MainActivity.ty);
-        if(type.equals("credits"))
+        if(type.equals("Credits"))
         {
             tv.setText(credit);
         }
