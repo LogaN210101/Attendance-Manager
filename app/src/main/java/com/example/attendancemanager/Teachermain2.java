@@ -33,7 +33,7 @@ import static android.graphics.Color.BLUE;
 
 public class Teachermain2 extends AppCompatActivity implements View.OnClickListener {
 
-    String clg,info,sub,s1="";
+    String clg,info,sub;
     String email;
     FirebaseAuth auth;
     DatabaseReference db,dbs;
@@ -141,13 +141,22 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                     db.child(a).child(sub).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            add a2=dataSnapshot.getValue(add.class);
-                            String s2=a2.uname;
-                            String present=s2.substring(0,s2.indexOf('/'));
-                            String total=s2.substring(s2.indexOf('/')+1);
-                            int j=getIndex(a);
-                            student[1][j]=present;
-                            student[2][j]=total;
+                            add a2 = dataSnapshot.getValue(add.class);
+                            if (a2 != null) {
+                                String s2 = a2.uname;
+                                String present = s2.substring(0, s2.indexOf('/'));
+                                String total = s2.substring(s2.indexOf('/') + 1);
+                                int j = getIndex(a);
+                                student[1][j] = present;
+                                student[2][j] = total;
+                            }
+                            else
+                            {
+                                try{
+                                t.setVisibility(View.INVISIBLE);
+                                error();}
+                                catch(Exception e){}
+                            }
                         }
 
                         @Override
@@ -163,6 +172,21 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+    public void error(){
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Warning!")
+                .setCancelable(false)
+                .setMessage("The Paper Code you entered does not belong to this class. Please go back and recheck the paper code.")
+                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
     public int getIndex(String n)
     {

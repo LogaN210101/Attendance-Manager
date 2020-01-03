@@ -127,7 +127,7 @@ public class Studentsubs extends AppCompatActivity {
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();;
+                        dialog.dismiss();
                     }
                 });
         AlertDialog a=alt.create();

@@ -1,5 +1,6 @@
 package com.example.attendancemanager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,31 +80,38 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
                     db.child(a).child(sub).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                            add a2=dataSnapshot1.getValue(add.class);
-                            final TableRow tr=new TableRow(TakeAttendance.this);
-                            tr.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.MATCH_PARENT));
-                            TextView tv1=new TextView(TakeAttendance.this);
-                            TextView t2=new TextView(TakeAttendance.this);
-                            TextView t3=new TextView(TakeAttendance.this);
-                            String s2=a2.uname;
-                            int present=Integer.parseInt(s2.substring(0,s2.indexOf('/')));
-                            int total=Integer.parseInt(s2.substring(s2.indexOf('/')+1));
-                            tv1.setTextSize(25);
-                            t2.setTextSize(25);
-                            t3.setTextSize(25);
-                            tv1.setText(a+"\t\t\t");
-                            t2.setText("Attended: "+present+"\t\t\t");
-                            if(total>0)
-                                t3.setText(present*100/total+"%"+"\n");
+                            add a2 = dataSnapshot1.getValue(add.class);
+                            if (a2 != null) {
+                                final TableRow tr = new TableRow(TakeAttendance.this);
+                                tr.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.MATCH_PARENT));
+                                TextView tv1 = new TextView(TakeAttendance.this);
+                                TextView t2 = new TextView(TakeAttendance.this);
+                                TextView t3 = new TextView(TakeAttendance.this);
+                                String s2 = a2.uname;
+                                int present = Integer.parseInt(s2.substring(0, s2.indexOf('/')));
+                                int total = Integer.parseInt(s2.substring(s2.indexOf('/') + 1));
+                                tv1.setTextSize(25);
+                                t2.setTextSize(25);
+                                t3.setTextSize(25);
+                                tv1.setText(a + "\t\t\t");
+                                t2.setText("Attended: " + present + "\t\t\t");
+                                if (total > 0)
+                                    t3.setText(present * 100 / total + "%" + "\n");
+                                else
+                                    t3.setText("0%" + "\n");
+                                if (total > total2)
+                                    total2 = total;
+                                tv2.setText("Total Classes: " + total2);
+                                tr.addView(tv1);
+                                tr.addView(t2);
+                                tr.addView(t3);
+                                t.addView(tr);
+                            }
                             else
-                                t3.setText("0%"+"\n");
-                            if(total>total2)
-                                total2=total;
-                            tv2.setText("Total Classes: "+total2);
-                            tr.addView(tv1);
-                            tr.addView(t2);
-                            tr.addView(t3);
-                            t.addView(tr);
+                            {
+                                try{
+                                error();} catch(Exception e){}
+                            }
                         }
 
                         @Override
@@ -123,5 +132,20 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),TeacherPage.class));
         finish();
+    }
+    public void error(){
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Warning!")
+                .setCancelable(false)
+                .setMessage("The Paper Code you entered does not belong to this class. Please go back and recheck the paper code.")
+                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
 }

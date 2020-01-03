@@ -43,7 +43,7 @@ public class TeacherPage extends AppCompatActivity {
     private Spinner dpt;
     EditText paper, year,sec;
     static String sub="",sc="",yr="",dept="",email="";
-    DatabaseReference db;
+    DatabaseReference db,fd;
     FirebaseAuth auth;
     static String s="";
     CheckInternet checkInternet;
@@ -54,7 +54,6 @@ public class TeacherPage extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain1);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
-
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
@@ -95,24 +94,22 @@ public class TeacherPage extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Select any one task and proceed",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(opt.getText().toString().equals("Take Attendance"))
-                {    if(getInfo())
-                    {       Intent intent=new Intent(TeacherPage.this,Teachermain2.class);
-                             intent.putExtra(s,s);
-                         startActivity(intent);
+                if(opt.getText().toString().equals("Take Attendance")) {
+                    if (getInfo()) {
+                        Intent intent = new Intent(TeacherPage.this, Teachermain2.class);
+                        intent.putExtra(s, s);
+                        startActivity(intent);
                         finish();
                     }
                 }
-                if(opt.getText().toString().equals("View Attendance"))
-                {    if(getInfo())
-                {
-                    Intent intent = new Intent(TeacherPage.this, TakeAttendance.class);
-                    intent.putExtra(s, s);
-                    startActivity(intent);
-                    finish();
+                if(opt.getText().toString().equals("View Attendance")) {
+                    if (getInfo()) {
+                        Intent intent = new Intent(TeacherPage.this, TakeAttendance.class);
+                        intent.putExtra(s, s);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
-                }
-
             }
         });
     }
