@@ -206,25 +206,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.item1: { ty="Credits";
-
-                Intent it=new Intent(getApplicationContext(),About.class);
-                it.putExtra(ty,ty);
-                startActivity(it);
+            case R.id.item1: { AlertDialog.Builder alt = new AlertDialog.Builder(this);
+                alt.setTitle("Credits")
+                        .setCancelable(false)
+                        .setMessage("This app was made as a project for ACM Hackaday by Team Techie (we chose the name ourselves). Our team consisted of three students from Heritage Institute of Technology, 1st years. The team was headed towards success by the developers Subhopriyo Sadhukhan, Ankit Verma and Shahil Singh. The project was started on 14th December,2019 and continued till 28th December,2019 for making of the base model work. Further updates are being worked on and being deployed till date. The project was developed in Java, XML and Firebase. Thank you users for using this beautiful android application which makes your day-to-day work easier. Please contact the developers in case of any query or feedback.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog a1 = alt.create();
+                a1.show();
                 break;
             }
             case R.id.item2:
             {
-                ty="ReadMe";
-                Intent it=new Intent(getApplicationContext(),About.class);
-                it.putExtra(ty,ty);
-                startActivity(it);
+                AlertDialog.Builder alt = new AlertDialog.Builder(this);
+                alt.setTitle("Readme")
+                        .setCancelable(false)
+                        .setMessage("Thank You for Installing Attendance Manager. If you are a new user, at first register yourself. After successful registration, you will receive a mail in your registered email id. Verify the email id from the link given in the mail. After verification, sign in using your email id and password. Teachers can give attendance and view attendance of any particular section at a time. Students need to be very careful while registering their subjects for that semester in the beginning. Students have got option to change their subjects after semester, which will reset the last attendances. In case of any abnormal behaviour of the android application or feedback, please contact the developers. Your participation in further developing this app is highly appreciated.\n" +
+                                "Thank you,\n" +
+                                "Team Developers")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog a1 = alt.create();
+                a1.show();
                 break;
 
             }
             case R.id.item3:
             {
-                finish();
+                AlertDialog.Builder alt = new AlertDialog.Builder(this);
+                alt.setTitle("Alert!")
+                        .setCancelable(false)
+                        .setMessage("Are you sure you want to exit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog a1 = alt.create();
+                a1.show();
                 break;
             }
         }

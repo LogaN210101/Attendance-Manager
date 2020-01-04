@@ -121,6 +121,8 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                     i++;
                 }
                 student=new String[3][i];
+                if(i==0)
+                    errorNoStudent();
                 show();
             }
 
@@ -129,6 +131,21 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+    public void errorNoStudent() {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Warning!")
+                .setCancelable(false)
+                .setMessage("No Students are still registered in this class for this subject.")
+                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
     public  void defAttendance()
     {

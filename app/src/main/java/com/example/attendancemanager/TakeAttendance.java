@@ -32,6 +32,7 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
     DatabaseReference db,dbs;
     TableLayout t;
     TextView tv2;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,6 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
         t=findViewById(R.id.table);
         tv2=findViewById(R.id.textView2);
         getCollege();
-
     }
     public void getCollege()
     {
@@ -106,12 +106,15 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
                                 tr.addView(t2);
                                 tr.addView(t3);
                                 t.addView(tr);
+                                i++;
                             }
                             else
                             {
                                 try{
                                 error();} catch(Exception e){}
                             }
+                            if(i==0)
+                                errorNoStudent();
                         }
 
                         @Override
@@ -127,6 +130,21 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
 
             }
         });
+    }
+    public void errorNoStudent() {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Warning!")
+                .setCancelable(false)
+                .setMessage("No Students are still registered in this class for this subject.")
+                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
     @Override
     public void onBackPressed() {
