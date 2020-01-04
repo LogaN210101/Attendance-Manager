@@ -126,18 +126,8 @@ public class ChangeSub extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Warning!")
-                .setCancelable(false)
-                .setMessage("You cannot Leave while registering. If you close the app now, all data will be lost.")
-                .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();;
-                    }
-                });
-        AlertDialog a=alt.create();
-        a.show();
+        finish();
+        startActivity(new Intent(getApplicationContext(),StudentPage.class));
     }
 
     @Override

@@ -42,6 +42,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     Button save;
     String student[][];
     CheckBox gcb;
+    int total2=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,6 +167,9 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                                 int j = getIndex(a);
                                 student[1][j] = present;
                                 student[2][j] = total;
+                                if(Integer.parseInt(total)>total2)
+                                    total2=Integer.parseInt(total);
+                                updateTotal();
                             }
                             else
                             {
@@ -189,6 +193,11 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+    public void updateTotal()
+    {
+        for(int t=0;t<student[0].length;t++)
+            student[2][t]=""+total2;
     }
     public void error(){
         AlertDialog.Builder alt=new AlertDialog.Builder(this);

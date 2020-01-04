@@ -41,6 +41,7 @@ String email;
 private ProgressDialog pd;
 static  String g;
 CheckInternet checkInternet;
+int fl=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,21 +73,18 @@ CheckInternet checkInternet;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 add als = dataSnapshot.getValue(add.class);
                 s = s + "\n" + subject + " = " + als.uname;
-                int pre=Integer.parseInt(als.uname.substring(0,als.uname.indexOf('/')));
-                int tot=Integer.parseInt(als.uname.substring(als.uname.indexOf('/')+1));
+                int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
+                int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
                 int percent;
-                if(tot==0)
-                    percent=0;
-                else
-                {
-                    percent=pre*100/tot;
+                if (tot == 0)
+                    percent = 0;
+                else {
+                    percent = pre * 100 / tot;
                 }
-
-                s=s+" = "+percent+"%";
+                s = s + " = " + percent + "%";
                 tv.setText(s);
                 pd.dismiss();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -124,7 +122,13 @@ CheckInternet checkInternet;
             {
                 sub[c]=s1;
                 s1="";
-                show(sub[c++]); //To display attendance
+                if(s.contains(sub[c]))
+                {
+                    s="";
+                    tv.setText("");
+                    viewnm();
+                }
+                show(sub[c++]);//To display attendance
             }
             else
             {
