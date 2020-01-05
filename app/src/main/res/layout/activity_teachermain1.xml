@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="295dp"
-        android:layout_height="84dp"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
         android:text="    Enter Class details"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -27,10 +27,10 @@
         android:layout_height="71dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806">
+        app:layout_constraintVertical_bias="0.943">
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -47,16 +47,17 @@
             android:textSize="14sp" />
     </RadioGroup>
 
+
     <Spinner
         android:id="@+id/department"
         android:layout_width="207dp"
         android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
+        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.445" />
 
     <EditText
         android:id="@+id/Papercode"
@@ -67,10 +68,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.296"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintVertical_bias="0.587" />
 
     <EditText
         android:id="@+id/section"
@@ -81,10 +82,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintVertical_bias="0.441" />
 
     <EditText
         android:id="@+id/batchyear"
@@ -98,8 +99,7 @@
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
-
+        app:layout_constraintVertical_bias="0.742" />
 
     <Button
         android:id="@+id/next"
@@ -113,5 +113,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.857" />
+
+    <ImageView
+        android:id="@+id/profilepic"
+        android:layout_width="155dp"
+        android:layout_height="159dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.177"
+        app:srcCompat="@drawable/defaultpic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

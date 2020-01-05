@@ -9,14 +9,15 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="372dp"
-        android:layout_height="0dp"
+        android:layout_width="371dp"
+        android:layout_height="594dp"
         android:layout_marginTop="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573">
+        app:layout_constraintVertical_bias="0.952">
 
         <TextView
             android:id="@+id/textView"
@@ -31,6 +32,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="161dp"
+        android:layout_height="169dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.152"
+        app:srcCompat="@drawable/defaultpic" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

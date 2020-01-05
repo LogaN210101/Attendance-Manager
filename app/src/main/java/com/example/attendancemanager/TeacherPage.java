@@ -3,8 +3,6 @@ package com.example.attendancemanager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -22,11 +20,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,6 +39,7 @@ public class TeacherPage extends AppCompatActivity {
     Button proceed;
     private RadioGroup r;
     private RadioButton opt;
+    private ImageView pic;
     private Spinner dpt;
     EditText paper, year,sec;
     static String sub="",sc="",yr="",dept="",email="";
@@ -64,6 +64,7 @@ public class TeacherPage extends AppCompatActivity {
         year=findViewById(R.id.batchyear);
         sec=findViewById(R.id.section);
         auth=FirebaseAuth.getInstance();
+        pic=findViewById(R.id.profilepic);
         email=auth.getCurrentUser().getEmail();
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         showname();
@@ -136,6 +137,9 @@ public class TeacherPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AddS aa=dataSnapshot.getValue(AddS.class);
                 getSupportActionBar().setTitle("Welcome "+aa.name);
+                String x=aa.imgurl;
+
+                Glide.with(getApplicationContext()).load(x).into(pic);
             }
 
             @Override

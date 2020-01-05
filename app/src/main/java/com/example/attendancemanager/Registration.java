@@ -1,45 +1,47 @@
 package com.example.attendancemanager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.content.IntentFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.View;
-
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-
 import android.widget.ArrayAdapter;
-
 import android.widget.Button;
-
 import android.widget.EditText;
-
-
-
+import android.widget.ImageView;
 import android.widget.Spinner;
-
 import android.widget.Toast;
-
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import static android.graphics.Color.BLUE;
 
 public class Registration extends AppCompatActivity {
     private EditText nm,clgname,clgroll,sec,yer,teacherdept;
+    private ImageView profile;
+    public static final int PICK_IMAGE=1;
+    private Uri imageuri;
+    private StorageReference mStorageRef;
     private Spinner dpt;
     private Button sv;
-    static String g="";
+    static String g="",img_url="";
+    private ProgressDialog progress;
     String f,test,uname, name, dept, sc, clg, yr,clgr;
     DatabaseReference ft,fs,fu;
     CheckInternet checkInternet;
@@ -61,6 +63,9 @@ public class Registration extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
 
+        //for storing images
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("Profilepics");
+
         ft=FirebaseDatabase.getInstance().getReference().child("Types"); //Database for Account Type
         fs=FirebaseDatabase.getInstance().getReference().child("Student"); //Database for students
         fu=FirebaseDatabase.getInstance().getReference().child("Users"); //Store user info
@@ -74,6 +79,10 @@ public class Registration extends AppCompatActivity {
         dpt = findViewById(R.id.department);
         teacherdept=findViewById(R.id.Teacherdepartment);
         sv=findViewById(R.id.save);
+        profile=findViewById(R.id.profilepic);
+        imageuri=null;
+        progress=new ProgressDialog(this);
+
 
 
         //Setting detail entries invisible
@@ -119,9 +128,59 @@ public class Registration extends AppCompatActivity {
         sv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                extradata();
+                storeimage();
             }
         });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select a picture"),PICK_IMAGE);
+            }
+        });
+
+    }
+    void storeimage() {//To store the pic
+        name = nm.getText().toString().trim();
+        try {
+            progress.setTitle("Uploading");
+            progress.show();
+            if (imageuri != null) {
+                final StorageReference user_profile = mStorageRef.child( uname+".jpg");
+                user_profile.putFile(imageuri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                user_profile.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+
+                                        img_url = uri.toString();// to store url of the image
+                                        extradata();
+                                        progress.dismiss();
+                                    }
+                                });
+                            }
+                        })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                        progress.setMessage((int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount())+ " %");
+                    }
+                });
+            } else {
+                Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }catch (Exception e)
+        {
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     void extradata()
@@ -133,6 +192,8 @@ public class Registration extends AppCompatActivity {
         yr=yer.getText().toString().trim();
         Spinner spinner=findViewById(R.id.department);
         String dep=spinner.getSelectedItem().toString().trim();
+
+
         if(test.equals("Teacher"))
         {
             dep=teacherdept.getText().toString();
@@ -152,7 +213,7 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
                 return;
             }
-            AddS a=new AddS(name,clg,dep,"","","");
+            AddS a=new AddS(name,clg,dep,"","","",img_url);
             fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(a);
             add a1=new add((uname).substring(0,(uname).indexOf('@'))+"Teacher");
             ft.push().setValue(a1);
@@ -170,6 +231,12 @@ public class Registration extends AppCompatActivity {
             if(yr.equals(""))
             {
                 Toast.makeText(getApplicationContext(),"Please Enter your year of joining",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if(yr.length()!=4)
+            {
+                Toast.makeText(getApplicationContext(),"Please Enter your year of joining in 4 digit yyyy format",Toast.LENGTH_SHORT).show();
+                yer.setText("");
                 return;
             }
             if(clgr.equals(""))
@@ -197,7 +264,7 @@ public class Registration extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
                 return;
             }
-            AddS ad=new AddS(name,clg,dep,sc,clgr,yr);
+            AddS ad=new AddS(name,clg,dep,sc,clgr,yr,img_url);
             fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(ad);
             add a=new add((uname).substring(0,(uname).indexOf('@'))+"Student");
             ft.push().setValue(a);
@@ -209,6 +276,17 @@ public class Registration extends AppCompatActivity {
             finish();
             startActivity(i);
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==PICK_IMAGE)
+        {
+            imageuri=data.getData();
+            profile.setImageURI(imageuri);
+        }
+
     }
     @Override
     public void onBackPressed() {

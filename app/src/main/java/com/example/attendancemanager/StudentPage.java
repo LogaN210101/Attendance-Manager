@@ -1,8 +1,8 @@
 package com.example.attendancemanager;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,13 +14,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static android.graphics.Color.BLUE;
+
 public class StudentPage extends AppCompatActivity {
 String s="";
 private TextView tv;
@@ -39,7 +39,8 @@ private String clg,clgr,dep,sec,yr;
 private int i=0;
 String email;
 private ProgressDialog pd;
-static  String g;
+private ImageView dp;
+static  String g,img_url;
 CheckInternet checkInternet;
 int fl=0;
     @Override
@@ -55,6 +56,7 @@ int fl=0;
         registerReceiver(checkInternet,intentFilter);
         Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
         auth=FirebaseAuth.getInstance();
+        dp=findViewById(R.id.profile_pic);
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Student");
         obj.apply();
@@ -154,6 +156,10 @@ int fl=0;
                 sec=ads.section;
                 dep=ads.dept;
                 yr=ads.year;
+                img_url=ads.imgurl;
+
+                Glide.with(getApplicationContext()).load(img_url).into(dp);
+
                 s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"\n"+"YOUR ATTENDANCE";
                 dbs=FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
                         .child(dep+sec+yr).child(clgr);

@@ -12,7 +12,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
