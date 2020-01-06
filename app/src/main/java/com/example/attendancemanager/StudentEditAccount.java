@@ -19,7 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +31,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.net.URI;
+
 import static android.graphics.Color.BLUE;
 
 public class StudentEditAccount extends AppCompatActivity {
@@ -40,10 +46,12 @@ public class StudentEditAccount extends AppCompatActivity {
     private Uri imageuri;
     private ProgressDialog progress;
     static String g="",img_url="";
-    String f,test,uname, name, dept, sc, clg, yr,clgr;
+    String f,test,uname, name, dept, sc, clg, yr,clgr,dep;
     DatabaseReference ft,fs,fu;
     CheckInternet checkInternet;
     FirebaseAuth auth;
+    String infos="";
+    private TextView tv4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +63,14 @@ public class StudentEditAccount extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         uname=auth.getCurrentUser().getEmail();
         test="Student";
+        Intent inte=getIntent();
+        infos=inte.getStringExtra(StudentPage.infos);
 
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
-
+        tv4=findViewById(R.id.textView4);
+        tv4.setText("Tap and Edit the Fields you want to update");
         //for storing images
         mStorageRef = FirebaseStorage.getInstance().getReference().child("Profilepics");
 
@@ -80,7 +91,14 @@ public class StudentEditAccount extends AppCompatActivity {
         imageuri=null;
         progress=new ProgressDialog(this);
 
-
+        nm.setText(infos.substring(0,infos.indexOf('!')));
+        clgname.setText(infos.substring(infos.indexOf('!')+1,infos.indexOf('@')));
+        sec.setText(infos.substring(infos.indexOf('@')+1,infos.indexOf('#')));
+        clgroll.setText(infos.substring(infos.indexOf('#')+1,infos.indexOf('$')));
+        yer.setText(infos.substring(infos.indexOf('$')+1,infos.indexOf('%')));
+        Glide.with(getApplicationContext()).load(infos.substring(infos.indexOf('%')+1)).into(profile);
+        //img_url=infos.substring(infos.indexOf('%')+1);
+        //try {imageuri=Uri.parse(img_url);}catch(Exception e){}
         //Setting detail entries invisible
         clgroll.setVisibility(View.INVISIBLE);
         sec.setVisibility(View.INVISIBLE);
@@ -124,6 +142,39 @@ public class StudentEditAccount extends AppCompatActivity {
         sv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name=nm.getText().toString().trim();
+                clg=clgname.getText().toString().trim().toUpperCase();
+                sc=sec.getText().toString().trim().toUpperCase();
+                clgr=clgroll.getText().toString().trim();
+                yr=yer.getText().toString().trim();
+                Spinner spinner=findViewById(R.id.department);
+                dep=spinner.getSelectedItem().toString().trim();
+                if(test.equals("Student")) {
+                    if (yr.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your year of joining", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (clgr.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter Roll number", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (sc.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Section cannot be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (dep.equals("Department") || dep.equals((""))) {
+                        Toast.makeText(getApplicationContext(), "Please Select Your Department", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (clg.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please enter your college name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (name.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 storeimage();
             }
         });
@@ -155,8 +206,8 @@ public class StudentEditAccount extends AppCompatActivity {
 
                                     @Override
                                     public void onSuccess(Uri uri) {
-
-                                        img_url = uri.toString();// to store url of the image
+                                        //if(img_url.equals(""))
+                                            img_url = uri.toString();// to store url of the image
                                         extradata();
                                         progress.dismiss();
                                     }
@@ -166,12 +217,13 @@ public class StudentEditAccount extends AppCompatActivity {
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                                progress.setMessage((int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount())+ " %");
+                                progress.setMessage((int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount())+ " % Completed");
                             }
                         });
             } else {
-                Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
-                return;
+                //Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
+                progress.dismiss();
+                extradata();
             }
         }catch (Exception e)
         {
@@ -179,54 +231,14 @@ public class StudentEditAccount extends AppCompatActivity {
         }
     }
 
-    void extradata()
-    {
-        name=nm.getText().toString().trim();
-        clg=clgname.getText().toString().trim().toUpperCase();
-        sc=sec.getText().toString().trim().toUpperCase();
-        clgr=clgroll.getText().toString().trim();
-        yr=yer.getText().toString().trim();
-        Spinner spinner=findViewById(R.id.department);
-        String dep=spinner.getSelectedItem().toString().trim();
-        if(test.equals("Student"))
-        {
-            if(yr.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Enter your year of joining",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(clgr.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Enter Roll number",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(sc.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Section cannot be empty",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(dep.equals("Department") || dep.equals(("")))
-            {
-                Toast.makeText(getApplicationContext(),"Please Select Your Department",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(clg.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please enter your college name",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(name.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            AddS ad=new AddS(name,clg,dep,sc,clgr,yr,img_url);
-            fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(ad);
-            Toast.makeText(getApplicationContext(),"Account Updated",Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(getApplicationContext(),StudentPage.class);
-            finish();
-            startActivity(i);
-        }
+    void extradata() {
+
+        AddS ad = new AddS(name, clg, dep, sc, clgr, yr, img_url);
+        fu.child((uname).substring(0, (uname).indexOf('@'))).setValue(ad);
+        Toast.makeText(getApplicationContext(), "Account Updated", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(getApplicationContext(), StudentPage.class);
+        finish();
+        startActivity(i);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

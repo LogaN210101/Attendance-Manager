@@ -120,8 +120,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="246dp"
-        android:layout_height="43dp"
+        android:layout_width="282dp"
+        android:layout_height="55dp"
         android:text="Enter your details."
         android:textAlignment="center"
         android:textSize="24sp"

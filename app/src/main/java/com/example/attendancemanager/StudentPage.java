@@ -42,6 +42,7 @@ private ProgressDialog pd;
 private ImageView dp;
 static  String g,img_url;
 CheckInternet checkInternet;
+static String infos="";
 int fl=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +181,7 @@ int fl=0;
                 dep=ads.dept;
                 yr=ads.year;
                 img_url=ads.imgurl;
-
+                infos=ads.name+"!"+clg+"@"+sec+"#"+clgr+"$"+yr+"%"+img_url;
                 Glide.with(getApplicationContext()).load(img_url).into(dp);
 
                 s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"\n"+"YOUR ATTENDANCE";
@@ -289,8 +290,10 @@ int fl=0;
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1: {
+                Intent inte=new Intent(getApplicationContext(),StudentEditAccount.class);
+                inte.putExtra(infos,infos);
                 finish();
-                startActivity(new Intent(getApplicationContext(),StudentEditAccount.class));
+                startActivity(inte);
                 break;
             }
             case R.id.item2:
