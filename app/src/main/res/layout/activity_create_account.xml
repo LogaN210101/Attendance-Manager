@@ -124,6 +124,7 @@
         android:layout_width="124dp"
         android:layout_height="42dp"
         android:background="#B2FF59"
+        android:textAllCaps="false"
         android:text="Proceed ►"
         android:textColor="#FC050000"
         android:textSize="22sp"

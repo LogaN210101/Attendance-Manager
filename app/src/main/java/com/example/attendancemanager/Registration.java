@@ -30,6 +30,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.net.URI;
+
 import static android.graphics.Color.BLUE;
 
 public class Registration extends AppCompatActivity {
@@ -80,7 +82,8 @@ public class Registration extends AppCompatActivity {
         teacherdept=findViewById(R.id.Teacherdepartment);
         sv=findViewById(R.id.save);
         profile=findViewById(R.id.profilepic);
-        imageuri=null;
+        imageuri= null;
+
         progress=new ProgressDialog(this);
 
 
@@ -143,10 +146,10 @@ public class Registration extends AppCompatActivity {
 
     }
     void storeimage() {//To store the pic
-        name = nm.getText().toString().trim();
         try {
-            progress.setTitle("Uploading");
+            progress.setTitle("Uploading...");
             progress.show();
+            progress.setCancelable(false);
             if (imageuri != null) {
                 final StorageReference user_profile = mStorageRef.child( uname+".jpg");
                 user_profile.putFile(imageuri)
@@ -174,8 +177,28 @@ public class Registration extends AppCompatActivity {
                     }
                 });
             } else {
-                Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
-                return;
+                AlertDialog.Builder alt = new AlertDialog.Builder(this);
+                alt.setTitle("Note!")
+                        .setCancelable(false)
+                        .setMessage("You have not selected any profile image.Do you want to proceed with a default image?")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                img_url="https://firebasestorage.googleapis.com/v0/b/attendance-dbfaf.appspot.com/o/defaultpic.jpg?alt=media&token=15801193-87ce-4f4f-a873-f5287153c384";
+                                extradata();
+                            }
+                        });
+
+                AlertDialog a1 = alt.create();
+                a1.show();
+
             }
         }catch (Exception e)
         {
@@ -277,15 +300,18 @@ public class Registration extends AppCompatActivity {
             startActivity(i);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==PICK_IMAGE)
+        try{if(requestCode==PICK_IMAGE)
         {
             imageuri=data.getData();
             profile.setImageURI(imageuri);
-        }
+        }}
+        catch (Exception e){
+        Toast.makeText(Registration.this, "You have not selected any image.", Toast.LENGTH_SHORT).show();}
 
     }
     @Override

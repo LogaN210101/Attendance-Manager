@@ -123,6 +123,7 @@
         android:background="#B2FF59"
         android:text="Proceed ►"
         android:textColor="#FC050000"
+        android:textAllCaps="false"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
