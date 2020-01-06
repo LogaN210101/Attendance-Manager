@@ -23,8 +23,8 @@
         app:layout_constraintVertical_bias="0.795" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
@@ -35,15 +35,21 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="260dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
+            android:background="@drawable/edit_round"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
             android:hint="Enter Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:paddingStart="8dp"
+
+            android:paddingEnd="5dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.756"
@@ -53,10 +59,15 @@
 
         <EditText
             android:id="@+id/email"
-            android:singleLine="true"
-            android:layout_width="260dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
-            android:hint="Enter Email" />
+            android:background="@drawable/edit_round"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawablePadding="5dp"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="8dp"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView

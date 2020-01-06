@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/signin"
-        android:layout_width="146dp"
-        android:layout_height="49dp"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
         android:background="@drawable/create"
         android:text="Sign In"
         android:textSize="25sp"
@@ -24,8 +24,8 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -36,29 +36,39 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="260dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
+            android:background="@drawable/edit_round"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
             android:hint="Enter Password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:paddingStart="8dp"
+
+            android:paddingEnd="5dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553"
-        >
+        app:layout_constraintVertical_bias="0.553">
 
         <EditText
             android:id="@+id/email"
-            android:singleLine="true"
-            android:layout_width="260dp"
+            android:layout_width="300dp"
             android:layout_height="50dp"
-            android:hint="Enter Email" />
+            android:background="@drawable/edit_round"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawablePadding="5dp"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="8dp"
+            android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
@@ -76,8 +86,8 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="161dp"
-        android:layout_height="71dp"
+        android:layout_width="185dp"
+        android:layout_height="83dp"
         android:text="LOGIN"
         android:textAlignment="center"
         android:textSize="50sp"
