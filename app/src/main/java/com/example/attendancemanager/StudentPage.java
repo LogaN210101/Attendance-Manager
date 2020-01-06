@@ -73,19 +73,39 @@ int fl=0;
         dbs.child(n).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                add als = dataSnapshot.getValue(add.class);
-                s = s + "\n" + subject + " = " + als.uname;
-                int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
-                int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
-                int percent;
-                if (tot == 0)
-                    percent = 0;
-                else {
-                    percent = pre * 100 / tot;
+                if (fl < sub.length) {
+                    add als = dataSnapshot.getValue(add.class);
+                    s = s + "\n" + subject + " = " + als.uname;
+                    int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
+                    int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
+                    int percent;
+                    if (tot == 0)
+                        percent = 0;
+                    else {
+                        percent = pre * 100 / tot;
+                    }
+                    s = s + " = " + percent + "%";
+                    tv.setText(s);
+                    fl++;
+                    pd.dismiss();
                 }
-                s = s + " = " + percent + "%";
-                tv.setText(s);
-                pd.dismiss();
+                else{
+                    if(!s.contains("CURRENT ATTENDANCE")) {s=s+"\n\n"+"CURRENT ATTENDANCE";}
+                    add als = dataSnapshot.getValue(add.class);
+                    s = s + "\n" + subject + " = " + als.uname;
+                    int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
+                    int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
+                    int percent;
+                    if (tot == 0)
+                        percent = 0;
+                    else {
+                        percent = pre * 100 / tot;
+                    }
+                    s = s + " = " + percent + "%";
+                    tv.setText(s);
+                    fl++;
+                    pd.dismiss();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -138,6 +158,7 @@ int fl=0;
                 s1=s1+ch;
             }
         }
+
     }
 
     public void viewnm()
