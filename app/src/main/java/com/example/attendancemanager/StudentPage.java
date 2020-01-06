@@ -99,7 +99,7 @@ int fl=0;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     add a1 = dataSnapshot.getValue(add.class);
-                    getSubject(a1.uname);
+                    try{ getSubject(a1.uname);}catch(Exception e){}
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -128,7 +128,8 @@ int fl=0;
                 {
                     s="";
                     tv.setText("");
-                    viewnm();
+                    try{viewnm();}
+                    catch(Exception e){}
                 }
                 show(sub[c++]);//To display attendance
             }
@@ -142,7 +143,8 @@ int fl=0;
     public void viewnm()
     {
         pd.setMessage("Loading...");
-        pd.setCancelable(false);
+        try{pd.setCancelable(false);}
+        catch(Exception e){}
         pd.show();
         tv.setTextSize(25);
 
