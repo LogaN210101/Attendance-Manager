@@ -147,11 +147,11 @@ public class Registration extends AppCompatActivity {
     }
     void storeimage() {//To store the pic
         try {
-            progress.setTitle("Uploading...");
-            progress.setCancelable(false);
             if (imageuri != null) {
-                progress.show();
                 final StorageReference user_profile = mStorageRef.child( uname+".jpg");
+                progress.setTitle("Uploading...");
+                progress.show();
+                progress.setCancelable(false);
                 user_profile.putFile(imageuri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override

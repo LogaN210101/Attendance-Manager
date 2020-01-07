@@ -39,47 +39,46 @@
 
     <EditText
         android:id="@+id/sub1"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="136dp"
-        android:ems="10"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="10dp"
+        android:ems="10"
         android:hint="Subject 1"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <EditText
         android:id="@+id/sub2"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="30dp"
+
         android:ems="10"
         android:hint="Subject 2"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.348" />
 
     <EditText
         android:id="@+id/sub3"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="136dp"
+        android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Subject 3"
-        android:layout_marginEnd="10dp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,12 +89,12 @@
 
     <EditText
         android:id="@+id/sub4"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="136dp"
-        android:ems="10"
         android:layout_marginEnd="10dp"
+        android:ems="10"
         android:hint="Subject 4"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -107,12 +106,12 @@
 
     <EditText
         android:id="@+id/sub5"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="136dp"
-        android:ems="10"
         android:layout_marginEnd="10dp"
+        android:ems="10"
         android:hint="Subject 5"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,9 +123,9 @@
 
     <EditText
         android:id="@+id/sub6"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="136dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
@@ -141,7 +140,7 @@
 
     <EditText
         android:id="@+id/sub7"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
@@ -158,7 +157,7 @@
 
     <EditText
         android:id="@+id/sub8"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
@@ -175,7 +174,7 @@
 
     <EditText
         android:id="@+id/sub9"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
@@ -193,7 +192,7 @@
 
     <EditText
         android:id="@+id/sub10"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
@@ -210,7 +209,7 @@
 
     <EditText
         android:id="@+id/sub11"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
@@ -227,7 +226,7 @@
 
     <EditText
         android:id="@+id/sub12"
-        android:layout_width="150dp"
+        android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="136dp"
