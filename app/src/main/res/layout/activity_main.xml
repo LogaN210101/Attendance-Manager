@@ -63,11 +63,11 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:background="@drawable/edit_round"
-            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
             android:drawablePadding="5dp"
             android:hint="Enter Email"
             android:inputType="textEmailAddress"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

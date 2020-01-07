@@ -33,11 +33,11 @@
             app:layout_constraintVertical_bias="0.0" />
     </ScrollView>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_pic"
         android:layout_width="161dp"
         android:layout_height="169dp"
-        android:scaleType="fitXY"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

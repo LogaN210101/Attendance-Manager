@@ -29,7 +29,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:drawableRight="@drawable/ic_edit_black_24dp"
+        android:drawableEnd="@drawable/ic_edit_black_24dp"
         android:hint="Enter College name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -138,11 +138,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.044" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
         android:layout_width="182dp"
         android:layout_height="167dp"
-        android:scaleType="fitXY"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
