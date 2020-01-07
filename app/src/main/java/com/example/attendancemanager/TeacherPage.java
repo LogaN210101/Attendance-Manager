@@ -47,6 +47,7 @@ public class TeacherPage extends AppCompatActivity {
     FirebaseAuth auth;
     static String s="";
     CheckInternet checkInternet;
+    static String fg="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +139,7 @@ public class TeacherPage extends AppCompatActivity {
                 AddS aa=dataSnapshot.getValue(AddS.class);
                 getSupportActionBar().setTitle("Welcome "+aa.name);
                 String x=aa.imgurl;
-
+                fg=aa.name+"!"+aa.college+"@"+aa.dept+"#"+x;
                 Glide.with(getApplicationContext()).load(x).into(pic);
             }
 
@@ -166,8 +167,10 @@ public class TeacherPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1: {
+                Intent inte=new Intent(getApplicationContext(),TeacherEditAccount.class);
+                inte.putExtra(fg,fg);
                 finish();
-                startActivity(new Intent(getApplicationContext(),TeacherEditAccount.class));
+                startActivity(inte);
                 break;
             }
             case R.id.item2:

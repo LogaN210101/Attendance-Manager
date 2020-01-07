@@ -193,6 +193,7 @@ public class StudentEditAccount extends AppCompatActivity {
         name = nm.getText().toString().trim();
         try {
             progress.setTitle("Uploading");
+            progress.setCancelable(false);
             progress.show();
             if (imageuri != null) {
                 final StorageReference user_profile = mStorageRef.child( uname+".jpg");
@@ -206,8 +207,7 @@ public class StudentEditAccount extends AppCompatActivity {
 
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        //if(img_url.equals(""))
-                                            img_url = uri.toString();// to store url of the image
+                                        img_url = uri.toString();// to store url of the image
                                         extradata();
                                         progress.dismiss();
                                     }
@@ -221,7 +221,6 @@ public class StudentEditAccount extends AppCompatActivity {
                             }
                         });
             } else {
-                //Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
                 progress.dismiss();
                 extradata();
             }
@@ -244,12 +243,19 @@ public class StudentEditAccount extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==PICK_IMAGE)
-        {
-            imageuri=data.getData();
-            profile.setImageURI(imageuri);
+        try {
+            if (requestCode == PICK_IMAGE) {
+                imageuri = data.getData();
+            }
         }
-
+        catch (Exception e){
+            imageuri=null;
+        }
+        finally
+        {
+            if(imageuri!=null)
+                profile.setImageURI(imageuri);
+        }
     }
     @Override
     public void onBackPressed() {

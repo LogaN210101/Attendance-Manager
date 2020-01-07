@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +50,8 @@ public class TeacherEditAccount extends AppCompatActivity {
     DatabaseReference ft,fs,fu;
     CheckInternet checkInternet;
     FirebaseAuth auth;
+    String dep;
+    String infos="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +104,14 @@ public class TeacherEditAccount extends AppCompatActivity {
             teacherdept.setVisibility(View.VISIBLE);
 
         }
-
+        Intent inte=getIntent();
+        infos=inte.getStringExtra(TeacherPage.fg);
+        nm.setText(infos.substring(0,infos.indexOf('!')));
+        clgname.setText(infos.substring(infos.indexOf('!')+1,infos.indexOf('@')));
+        teacherdept.setText(infos.substring(infos.indexOf('@')+1,infos.indexOf('#')));
+        Glide.with(getApplicationContext()).load(infos.substring(infos.indexOf('#')+1)).into(profile);
+        imageuri=null;
+        img_url=infos.substring(infos.indexOf('#')+1);
         //For drop down list
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this, R.array.Department, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -121,7 +131,42 @@ public class TeacherEditAccount extends AppCompatActivity {
         sv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name=nm.getText().toString().trim();
+                clg=clgname.getText().toString().trim().toUpperCase();
+                sc=sec.getText().toString().trim().toUpperCase();
+                clgr=clgroll.getText().toString().trim();
+                yr=yer.getText().toString().trim();
+                Spinner spinner=findViewById(R.id.department);
+                dep=spinner.getSelectedItem().toString().trim();
+                if(test.equals("Teacher"))
+                {
+                    dep=teacherdept.getText().toString();
+                    if(dep.equals(""))
+                    {
+                        Toast.makeText(getApplicationContext(),"Please Select your department",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(clg.equals(""))
+                    {
+                        Toast.makeText(getApplicationContext(),"Please enter college name",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if(name.equals(""))
+                    {
+                        Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
+                        return;
+                    }}
                 storeimage();
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select a picture"),PICK_IMAGE);
             }
         });
     }
@@ -129,6 +174,7 @@ public class TeacherEditAccount extends AppCompatActivity {
         name = nm.getText().toString().trim();
         try {
             progress.setTitle("Uploading");
+            progress.setCancelable(false);
             progress.show();
             if (imageuri != null) {
                 final StorageReference user_profile = mStorageRef.child( uname+".jpg");
@@ -153,12 +199,12 @@ public class TeacherEditAccount extends AppCompatActivity {
                         .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                                progress.setMessage((int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount())+ " %");
+                                progress.setMessage((int)(100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount())+ " % Completed");
                             }
                         });
             } else {
-                Toast.makeText(getBaseContext(), "Please select an image", Toast.LENGTH_SHORT).show();
-                return;
+                progress.dismiss();
+                extradata();
             }
         }catch (Exception e)
         {
@@ -166,57 +212,33 @@ public class TeacherEditAccount extends AppCompatActivity {
         }
     }
 
-    void extradata()
-    {
-        name=nm.getText().toString().trim();
-        clg=clgname.getText().toString().trim().toUpperCase();
-        sc=sec.getText().toString().trim().toUpperCase();
-        clgr=clgroll.getText().toString().trim();
-        yr=yer.getText().toString().trim();
-        Spinner spinner=findViewById(R.id.department);
-        String dep=spinner.getSelectedItem().toString().trim();
-        if(test.equals("Teacher"))
-        {
-            dep=teacherdept.getText().toString();
-            if(dep.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Select your department",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(clg.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please enter college name",Toast.LENGTH_SHORT).show();
-                return;
-            }
+    void extradata() {
 
-            if(name.equals(""))
-            {
-                Toast.makeText(getApplicationContext(),"Please Enter your name",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            AddS a=new AddS(name,clg,dep,"","","","");
-            fu.child((uname).substring(0,(uname).indexOf('@'))).setValue(a);
-            Toast.makeText(getApplicationContext(),"Details Updated",Toast.LENGTH_SHORT).show();
-            nm.setText("");
-            clgname.setText("");
-            finish();
-
-            Intent it=new Intent(getApplicationContext(),TeacherPage.class);
-            startActivity(it);
-            Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
-
-        }
+        AddS a = new AddS(name, clg, dep, "", "", "", img_url);
+        fu.child((uname).substring(0, (uname).indexOf('@'))).setValue(a);
+        Toast.makeText(getApplicationContext(), "Details Updated", Toast.LENGTH_SHORT).show();
+        nm.setText("");
+        clgname.setText("");
+        finish();
+        Intent it = new Intent(getApplicationContext(), TeacherPage.class);
+        startActivity(it);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode==PICK_IMAGE)
-        {
-            imageuri=data.getData();
-            profile.setImageURI(imageuri);
+        try {
+            if (requestCode == PICK_IMAGE) {
+                imageuri = data.getData();
+            }
         }
-
+        catch (Exception e){
+            imageuri=null;
+        }
+        finally
+        {
+            if(imageuri!=null)
+                profile.setImageURI(imageuri);
+        }
     }
     @Override
     public void onBackPressed() {
