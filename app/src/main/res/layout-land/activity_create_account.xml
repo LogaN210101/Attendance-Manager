@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/create"
+    android:background="@drawable/back"
     tools:context=".CreateAccount">
 
     <TextView
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.077" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -36,6 +36,9 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:ems="10"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:drawablePadding="5dp"
+            android:background="@drawable/edit_round"
             android:hint="Email ID"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +50,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -63,6 +66,9 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
+            android:background="@drawable/edit_round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.33"
@@ -72,7 +78,7 @@
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
@@ -85,6 +91,9 @@
             android:id="@+id/confirmpassword"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
+            android:background="@drawable/edit_round"
             android:ems="10"
             android:hint="Confirm your password"
             android:inputType="textPassword"

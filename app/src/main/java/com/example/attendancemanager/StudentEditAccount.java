@@ -97,7 +97,7 @@ public class StudentEditAccount extends AppCompatActivity {
         clgroll.setText(infos.substring(infos.indexOf('#')+1,infos.indexOf('$')));
         yer.setText(infos.substring(infos.indexOf('$')+1,infos.indexOf('%')));
         Glide.with(getApplicationContext()).load(infos.substring(infos.indexOf('%')+1)).into(profile);
-        //img_url=infos.substring(infos.indexOf('%')+1);
+        img_url=infos.substring(infos.indexOf('%')+1);
         //try {imageuri=Uri.parse(img_url);}catch(Exception e){}
         //Setting detail entries invisible
         clgroll.setVisibility(View.INVISIBLE);
