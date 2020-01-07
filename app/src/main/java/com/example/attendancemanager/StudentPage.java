@@ -76,7 +76,7 @@ int fl=0;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (fl < sub.length) {
                     add als = dataSnapshot.getValue(add.class);
-                    s = s + "\n" + subject + " = " + als.uname;
+                    s = s + "\n" + subject + ": " + "\t" + als.uname;
                     int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
                     int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
                     int percent;
@@ -85,15 +85,17 @@ int fl=0;
                     else {
                         percent = pre * 100 / tot;
                     }
-                    s = s + " = " + percent + "%";
+                    s = s + "\t" + " (" + percent + "%)";
                     tv.setText(s);
                     fl++;
                     pd.dismiss();
                 }
-                else{
-                    if(!s.contains("CURRENT ATTENDANCE")) {s=s+"\n\n"+"CURRENT ATTENDANCE";}
+                else {
+                    if (!s.contains("CURRENT ATTENDANCE")) {
+                        s = s + "\n\n" + "CURRENT ATTENDANCE";
+                    }
                     add als = dataSnapshot.getValue(add.class);
-                    s = s + "\n" + subject + " = " + als.uname;
+                    s = s + "\t" + "\n" + subject + ": " + "\t" + als.uname;
                     int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
                     int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
                     int percent;
@@ -102,7 +104,7 @@ int fl=0;
                     else {
                         percent = pre * 100 / tot;
                     }
-                    s = s + " = " + percent + "%";
+                    s = s + " (" + percent + "%)";
                     tv.setText(s);
                     fl++;
                     pd.dismiss();

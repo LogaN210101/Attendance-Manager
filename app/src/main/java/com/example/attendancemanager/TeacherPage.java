@@ -128,6 +128,11 @@ public class TeacherPage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please Enter all the fields", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(yr.length()!=4)
+        {
+            Toast.makeText(getApplicationContext(), "Year should be 4 digit", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         s=""+"!"+dep+sc+yr+"@"+sub;
         return true;
     }
