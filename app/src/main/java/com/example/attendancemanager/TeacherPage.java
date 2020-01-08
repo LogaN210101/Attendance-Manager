@@ -3,6 +3,8 @@ package com.example.attendancemanager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -24,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +51,8 @@ public class TeacherPage extends AppCompatActivity {
     static String s="";
     CheckInternet checkInternet;
     static String fg="";
+    TextView detail;
+    private ProgressDialog pd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,7 @@ public class TeacherPage extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain1);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+        getSupportActionBar().setTitle("Welcome Teacher");
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
@@ -66,6 +72,8 @@ public class TeacherPage extends AppCompatActivity {
         sec=findViewById(R.id.section);
         auth=FirebaseAuth.getInstance();
         pic=findViewById(R.id.profilepic);
+        detail=findViewById(R.id.textView8);
+        pd=new ProgressDialog(this);
         email=auth.getCurrentUser().getEmail();
         db= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         showname();
@@ -138,14 +146,19 @@ public class TeacherPage extends AppCompatActivity {
     }
     public void showname()
     {
+        pd.setMessage("Loading...");
+        pd.setCancelable(false);
+        pd.show();
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AddS aa=dataSnapshot.getValue(AddS.class);
-                getSupportActionBar().setTitle("Welcome "+aa.name);
+                detail.setText(aa.name+"\n"+aa.dept+" Department");
+                detail.setTextSize(25f);
                 String x=aa.imgurl;
                 fg=aa.name+"!"+aa.college+"@"+aa.dept+"#"+x;
                 Glide.with(getApplicationContext()).load(x).into(pic);
+                pd.dismiss();
             }
 
             @Override

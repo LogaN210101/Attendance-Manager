@@ -103,6 +103,11 @@ int fl=0;
                         percent = pre * 100 / tot;
                     }
                     s1=s1+" ("+percent+"%)";
+                    if(s.contains(subject+": "+"\t"+(pre-1)+"/"+(tot-1)))
+                        s1=s1+"Y";
+                    else
+                        s1=s1+"N";
+
                     fl++;
                     pd.dismiss();
                     currentAttendance(s1);
@@ -116,10 +121,15 @@ int fl=0;
     }
     public void currentAttendance(String n1)
     {
+        String p1="";
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Current Attendance")
+        if(n1.charAt(n1.length()-1)=='Y')
+            p1="You Attended " +(n1.substring(0,n1.indexOf(':')))+" Class";
+        else if(n1.charAt(n1.length()-1)=='N')
+            p1="You Missed " +(n1.substring(0,n1.indexOf(':')))+" Class";
+        alt.setTitle(p1)
                 .setCancelable(false)
-                .setMessage(n1)
+                .setMessage("Current Attendance"+"\n"+n1.substring(0,n1.length()-2))
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
