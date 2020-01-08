@@ -142,7 +142,6 @@
         android:id="@+id/profilepic"
         android:layout_width="160dp"
         android:layout_height="148dp"
-        android:background="@drawable/user"
         app:civ_border_color="#000C61"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
