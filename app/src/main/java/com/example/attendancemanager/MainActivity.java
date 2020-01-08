@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static String ty="";
     CheckInternet checkInternet;
     private DatabaseReference db;
+    final String ft="First";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Login Page");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+
+        SharedPreferences set=getSharedPreferences(ft,0);
+        if(set.getBoolean("firsttime",true)) {
+            AlertDialog.Builder alt = new AlertDialog.Builder(this);
+            alt.setTitle("Important!")
+                    .setCancelable(false)
+                    .setMessage("Thank you for downloading this application. This application shares the data with the online storage and all other accounts are directly or indirectly linked to each other's account, so please follow all the instructions provided by the college while registering and using this app. A small mistake on your side will hamper your own attendance and neither college nor developers shall be responsible for this loss. Its a humble request to you all users to abide by the rules set by your college. This app was designed to lubricate the process of taking attendance by the teacher and such can be acquired by the cooperation of the teachers and the students.\n" +
+                            "Thank you,\n" +
+                            "Team Developers")
+                    .setPositiveButton("Yes, I Agree", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            AlertDialog a1 = alt.create();
+            a1.show();
+            set.edit().putBoolean("firsttime",false).commit();
+        }
 
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -225,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 AlertDialog.Builder alt = new AlertDialog.Builder(this);
                 alt.setTitle("Readme")
                         .setCancelable(false)
-                        .setMessage("Thank You for Installing Attendance Manager. If you are a new user, at first register yourself. After successful registration, you will receive a mail in your registered email id. Verify the email id from the link given in the mail. After verification, sign in using your email id and password. Teachers can give attendance and view attendance of any particular section at a time. Students need to be very careful while registering their subjects for that semester in the beginning. Students have got option to change their subjects after semester, which will reset the last attendances. In case of any abnormal behaviour of the android application or feedback, please contact the developers. Your participation in further developing this app is highly appreciated.\n" +
+                        .setMessage("Thank You for Installing Attendance Manager. If you are a new user, at first register yourself. After successful registration, you will receive a mail in your registered email id. Verify the email id from the link given in the mail. After verification, sign in using your email id and password. Teachers can give attendance and view attendance of any particular section at a time. Students need to be very careful while registering their subjects for that semester in the beginning. If you do not have any data for a particular field, do fill it with a \"N/A\"  Students have got option to change their subjects after semester, which will reset the last attendances. In case of any abnormal behaviour of the android application or feedback, please contact the developers. Your participation in further developing this app is highly appreciated.\n" +
                                 "Thank you,\n" +
                                 "Team Developers")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
