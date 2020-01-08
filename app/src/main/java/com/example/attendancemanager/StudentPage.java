@@ -91,11 +91,9 @@ int fl=0;
                     pd.dismiss();
                 }
                 else {
-                    if (!s.contains("CURRENT ATTENDANCE")) {
-                        s = s + "\n\n" + "CURRENT ATTENDANCE";
-                    }
                     add als = dataSnapshot.getValue(add.class);
-                    s = s + "\t" + "\n" + subject + ": " + "\t" + als.uname;
+                    String s1=subject+": "+als.uname;
+
                     int pre = Integer.parseInt(als.uname.substring(0, als.uname.indexOf('/')));
                     int tot = Integer.parseInt(als.uname.substring(als.uname.indexOf('/') + 1));
                     int percent;
@@ -104,10 +102,10 @@ int fl=0;
                     else {
                         percent = pre * 100 / tot;
                     }
-                    s = s + " (" + percent + "%)";
-                    tv.setText(s);
+                    s1=s1+" ("+percent+"%)";
                     fl++;
                     pd.dismiss();
+                    currentAttendance(s1);
                 }
             }
             @Override
@@ -115,6 +113,23 @@ int fl=0;
 
             }
         });
+    }
+    public void currentAttendance(String n1)
+    {
+        AlertDialog.Builder alt=new AlertDialog.Builder(this);
+        alt.setTitle("Current Attendance")
+                .setCancelable(false)
+                .setMessage(n1)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                        startActivity(new Intent(getApplicationContext(),StudentPage.class));
+                    }
+                });
+        AlertDialog a=alt.create();
+        a.show();
     }
     public void subcheck()
     {
