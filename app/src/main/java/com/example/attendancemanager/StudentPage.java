@@ -110,7 +110,7 @@ int fl=0;
 
                     fl++;
                     pd.dismiss();
-                    currentAttendance(s1);
+                    try{currentAttendance(s1);}catch(Exception e){}
                 }
             }
             @Override
@@ -129,7 +129,7 @@ int fl=0;
             p1="You Missed " +(n1.substring(0,n1.indexOf(':')))+" Class";
         alt.setTitle(p1)
                 .setCancelable(false)
-                .setMessage("Current Attendance"+"\n"+n1.substring(0,n1.length()-2))
+                .setMessage("Current Attendance"+"\n"+n1.substring(0,n1.length()-1))
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -139,7 +139,7 @@ int fl=0;
                     }
                 });
         AlertDialog a=alt.create();
-        a.show();
+        try{a.show();}catch(Exception e){}
     }
     public void subcheck()
     {
