@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +40,7 @@ import static android.graphics.Color.BLUE;
 public class Registration extends AppCompatActivity {
     private EditText nm,clgname,clgroll,sec,yer,teacherdept;
     private ImageView profile;
+    private TextView tv;
     public static final int PICK_IMAGE=1;
     private Uri imageuri;
     private StorageReference mStorageRef;
@@ -84,6 +86,7 @@ public class Registration extends AppCompatActivity {
         teacherdept=findViewById(R.id.Teacherdepartment);
         sv=findViewById(R.id.save);
         profile=findViewById(R.id.profilepic);
+        tv=findViewById(R.id.text);
         imageuri= null;
 
         progress=new ProgressDialog(this);
@@ -311,6 +314,7 @@ public class Registration extends AppCompatActivity {
         {
             imageuri=data.getData();
             profile.setImageURI(imageuri);
+            tv.setVisibility(View.INVISIBLE);
         }}
         catch (Exception e){
         Toast.makeText(Registration.this, "You have not selected any image.", Toast.LENGTH_SHORT).show();}

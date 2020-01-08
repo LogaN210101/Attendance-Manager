@@ -138,6 +138,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.028" />
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="160dp"
+        android:layout_height="20dp"
+        android:text="Tap to select an image."
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
         android:layout_width="160dp"
@@ -150,5 +163,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.168"
-        app:srcCompat="@drawable/defaultpic" />
+        app:srcCompat="@drawable/user" />
 </androidx.constraintlayout.widget.ConstraintLayout>
