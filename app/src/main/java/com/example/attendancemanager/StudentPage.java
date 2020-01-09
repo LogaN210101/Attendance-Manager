@@ -44,6 +44,7 @@ static  String g,img_url;
 CheckInternet checkInternet;
 static String infos="";
 int fl=0;
+String s5="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,8 +147,8 @@ int fl=0;
         dbs.child("All").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    add a1 = dataSnapshot.getValue(add.class);
-                    try{ getSubject(a1.uname);}catch(Exception e){}
+                    add a5 = dataSnapshot.getValue(add.class);
+                    try{ getSubject(a5.uname);}catch(Exception e) {Toast.makeText(getApplicationContext(),"It seems you have not registered for any subjects yet. Please add subjects at first to get attendance.",Toast.LENGTH_LONG).show();}
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -186,7 +187,6 @@ int fl=0;
                 s1=s1+ch;
             }
         }
-
     }
 
     public void viewnm()
@@ -200,23 +200,25 @@ int fl=0;
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AddS ads=dataSnapshot.getValue(AddS.class);
-                s=s+ads.name+"\n";
-                clg=ads.college;
-                clgr=ads.classroll;
-                sec=ads.section;
-                dep=ads.dept;
-                yr=ads.year;
-                img_url=ads.imgurl;
-                infos=ads.name+"!"+clg+"@"+sec+"#"+clgr+"$"+yr+"%"+img_url+"^"+dep;
+                AddS ads = dataSnapshot.getValue(AddS.class);
+                s = s + ads.name + "\n";
+                clg = ads.college;
+                clgr = ads.classroll;
+                sec = ads.section;
+                dep = ads.dept;
+                yr = ads.year;
+                img_url = ads.imgurl;
+                infos = ads.name + "!" + clg + "@" + sec + "#" + clgr + "$" + yr + "%" + img_url + "^" + dep;
                 Glide.with(getApplicationContext()).load(img_url).into(dp);
 
-                s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"\n"+"YOUR ATTENDANCE";
-                dbs=FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
-                        .child(dep+sec+yr).child(clgr);
+                s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr + "\n" + "\n" + "YOUR ATTENDANCE";
+                s5 = s;
+                dbs = FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
+                        .child(dep + sec + yr).child(clgr);
+                tv.setText(s);
+                pd.dismiss();
                 subcheck();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

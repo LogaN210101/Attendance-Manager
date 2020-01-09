@@ -12,14 +12,10 @@
         android:id="@+id/signin"
         android:layout_width="151dp"
         android:layout_height="49dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="414dp"
-        android:layout_marginTop="244dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/teacher2"
         android:text="Sign In"
         android:textSize="25sp" />
@@ -28,15 +24,11 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-
-        android:layout_marginStart="263dp"
-        android:layout_marginTop="156dp"
         android:layout_marginEnd="120dp"
-        android:layout_marginBottom="117dp"
+        android:layout_marginBottom="115dp"
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -56,14 +48,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="264dp"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="201dp">
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="123dp">
 
         <EditText
             android:id="@+id/email"
@@ -87,26 +75,17 @@
         android:layout_height="177dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="93dp"
-        android:layout_marginEnd="472dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="59dp"
         android:background="@drawable/logoland" />
 
     <TextView
         android:id="@+id/heading"
         android:layout_width="154dp"
         android:layout_height="71dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="338dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="261dp"
+        android:layout_marginEnd="204dp"
         android:text="LOGIN"
         android:textSize="50sp" />
 
@@ -114,14 +93,10 @@
         android:id="@+id/register"
         android:layout_width="402dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="264dp"
-        android:layout_marginTop="299dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="16dp"
         android:text="Don't have an Account? REGISTER here"
         android:textSize="20sp" />
 
@@ -129,12 +104,10 @@
         android:id="@+id/textView9"
         android:layout_width="138dp"
         android:layout_height="27dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="236dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="74dp"
         android:text="Forgot Password?" />
 
 </RelativeLayout>
