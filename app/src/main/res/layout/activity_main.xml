@@ -36,13 +36,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.299" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="300dp"
         android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="193dp"
+        android:layout_marginTop="94dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -50,6 +51,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.667"
         app:passwordToggleEnabled="true">
+
         <EditText
             android:id="@+id/password"
             android:layout_width="300dp"
@@ -67,11 +69,12 @@
             android:paddingStart="8dp"
             android:paddingEnd="5dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="300dp"
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="276dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.553">
+
         <EditText
             android:id="@+id/email"
             android:layout_width="300dp"
@@ -93,13 +97,14 @@
             android:paddingStart="8dp"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/signin"
         android:layout_width="124dp"
         android:layout_height="44dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/textInputLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="117dp"
+        android:layout_marginTop="94dp"
         android:background="@drawable/teacher2"
         android:text="Sign In"
         android:textSize="25sp"
@@ -109,31 +114,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.842" />
+
     <TextView
         android:id="@+id/textView9"
         android:layout_width="138dp"
         android:layout_height="27dp"
-        android:layout_above="@+id/signin"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="159dp"
         android:text="Forgot Password?"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/register"
         android:layout_width="301dp"
         android:layout_height="66dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/signin"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="26dp"
         android:text="Don't have an Account? REGISTER here"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintVertical_bias="0.964" />
 </RelativeLayout>
