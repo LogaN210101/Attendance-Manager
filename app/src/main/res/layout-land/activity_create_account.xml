@@ -16,11 +16,13 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.058" />
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
         android:layout_width="260dp"
         android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,17 +30,16 @@
         app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
-        >
+        app:layout_constraintVertical_bias="0.397">
 
         <EditText
             android:id="@+id/email"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:ems="10"
+            android:background="@drawable/edit_round"
             android:drawableStart="@drawable/ic_person_black_24dp"
             android:drawablePadding="5dp"
-            android:background="@drawable/edit_round"
+            android:ems="10"
             android:hint="Email ID"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,34 +49,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.422" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
         android:layout_width="260dp"
         android:layout_height="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:layout_constraintVertical_bias="0.0"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/password"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
+            android:background="@drawable/edit_round"
             android:drawableStart="@drawable/ic_vpn_key_black_24dp"
             android:drawablePadding="5dp"
-            android:background="@drawable/edit_round"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.33"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.636" />
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="260dp"
         android:layout_height="65dp"
@@ -83,17 +81,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:layout_constraintVertical_bias="0.0"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/confirmpassword"
             android:layout_width="250dp"
             android:layout_height="50dp"
+            android:background="@drawable/edit_round"
             android:drawableStart="@drawable/ic_vpn_key_black_24dp"
             android:drawablePadding="5dp"
-            android:background="@drawable/edit_round"
             android:ems="10"
             android:hint="Confirm your password"
             android:inputType="textPassword"
@@ -104,6 +102,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.865" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <RadioGroup
         android:id="@+id/radiogroup"
         android:layout_width="160dp"
