@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CheckInternet checkInternet;
     private DatabaseReference db;
     final String ft="First";
+    TextView forgetpass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Login Page");
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
+        forgetpass=findViewById(R.id.textView9);
+        forgetpass.setOnClickListener(this);
 
         SharedPreferences set=getSharedPreferences(ft,0);
         if(set.getBoolean("firsttime",true)) {
@@ -107,10 +110,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        if(v==forgetpass)
+        {
+            useremail=ue.getText().toString().trim();
+            if(useremail.equals(""))
+            {
+                Toast.makeText(getApplicationContext(),"Enter the Email ID",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            auth.sendPasswordResetEmail(useremail)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful())
+                            {
+                                Toast.makeText(getApplicationContext(),"Reset Password link sent to your email.",Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                                Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+        }
         if(v==sign)
         {
-
-
             useremail=ue.getText().toString().trim();
             userpassword=up.getText().toString().trim();
             if(useremail.equals(""))
