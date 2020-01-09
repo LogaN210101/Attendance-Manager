@@ -11,61 +11,61 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:drawableRight="@drawable/ic_edit_black_24dp"
+        android:ems="10"
         android:hint="Enter your full name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.252" />
 
     <EditText
         android:id="@+id/college"
-        android:layout_width="247dp"
+        android:layout_width="280dp"
         android:layout_height="49dp"
-        android:ems="10"
         android:drawableRight="@drawable/ic_edit_black_24dp"
-        android:hint="Enter College name"
+        android:ems="10"
+        android:hint="Enter College name(full name)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465" />
+        app:layout_constraintVertical_bias="0.455" />
 
     <EditText
         android:id="@+id/rollnumber"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:drawableRight="@drawable/ic_edit_black_24dp"
+        android:ems="10"
         android:hint="Enter College roll no."
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.885" />
 
     <EditText
         android:id="@+id/year"
-        android:layout_width="250dp"
+        android:layout_width="170dp"
         android:layout_height="50dp"
-        android:ems="10"
         android:drawableRight="@drawable/ic_edit_black_24dp"
+        android:ems="10"
         android:hint="Year of joining"
         android:inputType="number"
         android:maxLength="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.152"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.892" />
@@ -83,7 +83,7 @@
         app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.655" />
 
     <Spinner
         android:id="@+id/department"
@@ -91,10 +91,10 @@
         android:layout_height="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.668" />
 
     <Button
         android:id="@+id/save"
@@ -146,22 +146,23 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.551" />
+        app:layout_constraintVertical_bias="0.677" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
         android:layout_width="160dp"
         android:layout_height="148dp"
+        android:background="@drawable/user"
         app:civ_border_color="#000C61"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168"
+        app:layout_constraintVertical_bias="0.35"
         app:srcCompat="@drawable/user" />
 </androidx.constraintlayout.widget.ConstraintLayout>
