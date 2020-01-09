@@ -208,7 +208,7 @@ int fl=0;
                 dep=ads.dept;
                 yr=ads.year;
                 img_url=ads.imgurl;
-                infos=ads.name+"!"+clg+"@"+sec+"#"+clgr+"$"+yr+"%"+img_url;
+                infos=ads.name+"!"+clg+"@"+sec+"#"+clgr+"$"+yr+"%"+img_url+"^"+dep;
                 Glide.with(getApplicationContext()).load(img_url).into(dp);
 
                 s=s+clg+"\n"+dep+"\n"+sec+"\n"+yr+"\n"+clgr+"\n"+"\n"+"YOUR ATTENDANCE";

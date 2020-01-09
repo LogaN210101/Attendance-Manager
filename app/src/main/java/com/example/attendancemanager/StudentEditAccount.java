@@ -52,6 +52,7 @@ public class StudentEditAccount extends AppCompatActivity {
     FirebaseAuth auth;
     String infos="";
     private TextView tv4;
+    int fl=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +97,8 @@ public class StudentEditAccount extends AppCompatActivity {
         sec.setText(infos.substring(infos.indexOf('@')+1,infos.indexOf('#')));
         clgroll.setText(infos.substring(infos.indexOf('#')+1,infos.indexOf('$')));
         yer.setText(infos.substring(infos.indexOf('$')+1,infos.indexOf('%')));
-        Glide.with(getApplicationContext()).load(infos.substring(infos.indexOf('%')+1)).into(profile);
-        img_url=infos.substring(infos.indexOf('%')+1);
+        Glide.with(getApplicationContext()).load(infos.substring(infos.indexOf('%')+1,infos.indexOf('^'))).into(profile);
+        img_url=infos.substring(infos.indexOf('%')+1,infos.indexOf('^'));
         //try {imageuri=Uri.parse(img_url);}catch(Exception e){}
         //Setting detail entries invisible
         clgroll.setVisibility(View.INVISIBLE);
@@ -175,6 +176,16 @@ public class StudentEditAccount extends AppCompatActivity {
                         return;
                     }
                 }
+                if(!infos.substring(infos.indexOf('!')+1,infos.indexOf('@')).equals(clgname.getText().toString().trim().toUpperCase()))
+                    fl=1;
+                if(!sec.getText().toString().trim().toUpperCase().equals(infos.substring(infos.indexOf('@')+1,infos.indexOf('#'))))
+                    fl=1;
+                if(!infos.substring(infos.indexOf('%')+1).equals(dep))
+                    fl=1;
+                if(!infos.substring(infos.indexOf('$')+1,infos.indexOf('%')).equals(yr))
+                    fl=1;
+                if(!infos.substring(infos.indexOf('#')+1,infos.indexOf('$')).equals(clgr))
+                    fl=1;
                 storeimage();
             }
         });
@@ -234,10 +245,21 @@ public class StudentEditAccount extends AppCompatActivity {
 
         AddS ad = new AddS(name, clg, dep, sc, clgr, yr, img_url);
         fu.child((uname).substring(0, (uname).indexOf('@'))).setValue(ad);
-        Toast.makeText(getApplicationContext(), "Account Updated", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(getApplicationContext(), StudentPage.class);
-        finish();
-        startActivity(i);
+        if (fl == 0) {
+            Toast.makeText(getApplicationContext(), "Account Updated", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), StudentPage.class);
+            finish();
+            startActivity(i);
+        }
+        else if(fl==1)
+        {
+            Toast.makeText(getApplicationContext(), "Please update the subjects", Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(getApplicationContext(),EditSub.class);
+            g=dep+sc+yr+"@"+clg+"!"+clgr;
+            i.putExtra(g,g);
+            startActivity(i);
+            finish();
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
