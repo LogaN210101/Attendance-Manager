@@ -9,18 +9,18 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="363dp"
-        android:layout_height="52dp"
+        android:layout_width="316dp"
+        android:layout_height="43dp"
         android:text="Enter Class details"
 
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
@@ -30,10 +30,10 @@
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintHorizontal_bias="0.719"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.129"
+        app:layout_constraintVertical_bias="0.22"
         app:srcCompat="@drawable/defaultpic" />
 
     <RadioGroup
@@ -66,27 +66,29 @@
         android:id="@+id/department"
         android:layout_width="176dp"
         android:layout_height="53dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.118"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.269" />
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.049" />
 
     <EditText
         android:id="@+id/Papercode"
         android:layout_width="266dp"
         android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Enter Paper Code"
-        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.137"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576" />
+        app:layout_constraintTop_toBottomOf="@+id/department"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/section"
@@ -107,16 +109,17 @@
         android:id="@+id/batchyear"
         android:layout_width="268dp"
         android:layout_height="64dp"
-        android:ems="10"
+        android:layout_marginTop="16dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
+        android:ems="10"
         android:hint="Enter batch year"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876" />
+        app:layout_constraintTop_toBottomOf="@+id/Papercode"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/next"
@@ -136,7 +139,11 @@
         android:layout_width="134dp"
         android:layout_height="98dp"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toEndOf="@+id/profilepic"
-        app:layout_constraintTop_toBottomOf="@+id/heading" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
