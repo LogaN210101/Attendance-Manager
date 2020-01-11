@@ -14,8 +14,8 @@
         android:layout_height="49dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/teacher2"
         android:text="Sign In"
         android:textSize="25sp" />
@@ -27,8 +27,8 @@
 
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="115dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="119dp"
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -50,8 +50,8 @@
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="123dp">
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="92dp">
 
         <EditText
             android:id="@+id/email"
@@ -104,10 +104,11 @@
         android:id="@+id/textView9"
         android:layout_width="138dp"
         android:layout_height="27dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginStart="88dp"
-        android:layout_marginBottom="74dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginBottom="84dp"
         android:text="Forgot Password?" />
 
 </RelativeLayout>

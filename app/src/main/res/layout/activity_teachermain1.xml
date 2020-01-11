@@ -10,17 +10,17 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="353dp"
-        android:layout_height="44dp"
-        android:text="    Enter Class details"
+        android:layout_width="306dp"
+        android:layout_height="36dp"
+        android:text="Enter Class details"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="0.342" />
 
     <RadioGroup
         android:id="@+id/radiogroup"
@@ -53,57 +53,61 @@
         android:id="@+id/department"
         android:layout_width="152dp"
         android:layout_height="51dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/Papercode"
         android:layout_width="266dp"
-        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:layout_height="65dp"
+        android:layout_marginTop="15dp"
+        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Enter Paper Code"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587" />
+        app:layout_constraintTop_toBottomOf="@+id/department"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/section"
         android:layout_width="92dp"
         android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Section"
-        android:drawableRight="@drawable/ic_edit_black_24dp"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintTop_toBottomOf="@+id/heading"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/batchyear"
         android:layout_width="268dp"
         android:layout_height="64dp"
+        android:layout_marginTop="15dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Enter batch year"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintTop_toBottomOf="@+id/Papercode"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/next"
@@ -113,10 +117,10 @@
         android:text="Proceed ►"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.795"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.921" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
@@ -136,8 +140,8 @@
         android:id="@+id/textView8"
         android:layout_width="150dp"
         android:layout_height="119dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintStart_toEndOf="@+id/profilepic"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
