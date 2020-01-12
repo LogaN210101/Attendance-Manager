@@ -45,6 +45,7 @@ CheckInternet checkInternet;
 static String infos="";
 int fl=0;
 String s5="";
+TextView details;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +63,7 @@ String s5="";
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Student");
         obj.apply();
+        details=findViewById(R.id.textView10);
         pd=new ProgressDialog(this);
         tv=findViewById(R.id.textView);
         email=auth.getCurrentUser().getEmail();
@@ -210,12 +212,13 @@ String s5="";
                 img_url = ads.imgurl;
                 infos = ads.name + "!" + clg + "@" + sec + "#" + clgr + "$" + yr + "%" + img_url + "^" + dep;
                 Glide.with(getApplicationContext()).load(img_url).into(dp);
-
-                s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr + "\n" + "\n" + "YOUR ATTENDANCE";
+                s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr;
                 s5 = s;
+                details.setText(s);
+                details.setTextSize(20f);
+                s="YOUR ATTENDANCE";
                 dbs = FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
                         .child(dep + sec + yr).child(clgr);
-                tv.setText(s);
                 pd.dismiss();
                 subcheck();
             }
@@ -333,6 +336,24 @@ String s5="";
             case R.id.item3:
             {
                 exit();
+                break;
+            }
+            case R.id.item4:
+            {
+                AlertDialog.Builder alt = new AlertDialog.Builder(this);
+                alt.setTitle("Readme")
+                        .setCancelable(false)
+                        .setMessage("Thank You for Installing Attendance Manager. If you are a new user, at first register yourself. After successful registration, you will receive a mail in your registered email id. Verify the email id from the link given in the mail. After verification, sign in using your email id and password. Teachers can give attendance and view attendance of any particular section at a time. Students need to be very careful while registering their subjects for that semester in the beginning. If you do not have any data for a particular field, do fill it with a \"NA\"  Students have got option to change their subjects after semester, which will reset the last attendances. In case of any abnormal behaviour of the android application or feedback, please contact the developers. Your participation in further developing this app is highly appreciated.\n" +
+                                "Thank you,\n" +
+                                "Team Developers")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog a1 = alt.create();
+                a1.show();
                 break;
             }
         }

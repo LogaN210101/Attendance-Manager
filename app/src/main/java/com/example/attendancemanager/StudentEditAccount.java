@@ -176,6 +176,7 @@ public class StudentEditAccount extends AppCompatActivity {
                         return;
                     }
                 }
+                fl=0;
                 if(!infos.substring(infos.indexOf('!')+1,infos.indexOf('@')).equals(clgname.getText().toString().trim().toUpperCase()))
                     fl=1;
                 if(!sec.getText().toString().trim().toUpperCase().equals(infos.substring(infos.indexOf('@')+1,infos.indexOf('#'))))
@@ -245,21 +246,13 @@ public class StudentEditAccount extends AppCompatActivity {
 
         AddS ad = new AddS(name, clg, dep, sc, clgr, yr, img_url);
         fu.child((uname).substring(0, (uname).indexOf('@'))).setValue(ad);
-        if (fl == 0) {
+        if (fl >-1) {
             Toast.makeText(getApplicationContext(), "Account Updated", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getApplicationContext(), StudentPage.class);
             finish();
             startActivity(i);
         }
-        else if(fl==1)
-        {
-            Toast.makeText(getApplicationContext(), "Please update the subjects", Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(getApplicationContext(),EditSub.class);
-            g=dep+sc+yr+"@"+clg+"!"+clgr;
-            i.putExtra(g,g);
-            startActivity(i);
-            finish();
-        }
+
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
