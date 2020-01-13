@@ -10,12 +10,12 @@
 
     <Button
         android:id="@+id/signin"
-        android:layout_width="151dp"
-        android:layout_height="49dp"
+        android:layout_width="132dp"
+        android:layout_height="33dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="92dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="82dp"
         android:background="@drawable/teacher2"
         android:text="Sign In"
         android:textSize="25sp" />
@@ -50,7 +50,7 @@
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="71dp"
         android:layout_marginEnd="92dp">
 
         <EditText
@@ -81,11 +81,11 @@
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="154dp"
-        android:layout_height="71dp"
+        android:layout_width="204dp"
+        android:layout_height="58dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="204dp"
+        android:layout_marginEnd="154dp"
         android:text="LOGIN"
         android:textSize="50sp" />
 
@@ -95,8 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="23dp"
         android:text="Don't have an Account? REGISTER here"
         android:textSize="20sp" />
 

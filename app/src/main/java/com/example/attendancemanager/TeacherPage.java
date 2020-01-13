@@ -36,13 +36,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.graphics.Color.BLUE;
 
 public class TeacherPage extends AppCompatActivity {
     Button proceed;
     private RadioGroup r;
     private RadioButton opt;
-    private ImageView pic;
+    private CircleImageView pic;
     private Spinner dpt;
     EditText paper, year,sec;
     static String sub="",sc="",yr="",dept="",email="";

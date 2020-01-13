@@ -20,12 +20,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.graphics.Color.BLUE;
 
@@ -39,7 +42,7 @@ private String clg,clgr,dep,sec,yr;
 private int i=0;
 String email;
 private ProgressDialog pd;
-private ImageView dp;
+private CircleImageView dp;
 static  String g,img_url;
 CheckInternet checkInternet;
 static String infos="";
@@ -211,7 +214,9 @@ TextView details;
                 yr = ads.year;
                 img_url = ads.imgurl;
                 infos = ads.name + "!" + clg + "@" + sec + "#" + clgr + "$" + yr + "%" + img_url + "^" + dep;
-                Glide.with(getApplicationContext()).load(img_url).into(dp);
+                RequestOptions plc= new RequestOptions();
+                plc.placeholder(getResources().getDrawable(R.drawable.load));
+                Glide.with(getApplicationContext()).setDefaultRequestOptions(plc).load(img_url).into(dp);
                 s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr;
                 s5 = s;
                 details.setText(s);

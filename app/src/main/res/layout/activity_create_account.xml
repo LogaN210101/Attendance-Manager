@@ -125,7 +125,7 @@
 
     <Button
         android:id="@+id/proceed"
-        android:layout_width="124dp"
+        android:layout_width="130dp"
         android:layout_height="42dp"
         android:background="@drawable/edir_round2"
         android:text="Proceed ►"
