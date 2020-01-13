@@ -1,5 +1,6 @@
 package com.example.attendancemanager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
@@ -14,8 +15,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import static android.graphics.Color.BLUE;
 
 public class ChangeSub extends AppCompatActivity {
@@ -23,9 +29,12 @@ public class ChangeSub extends AppCompatActivity {
     private EditText[] subs=new EditText[12];
     String subjects[]=new String[15],Subs="";
     int j,i=0,a=0;
+    String alsub="";
     String info,clgr,clg;
     DatabaseReference fd;
     CheckInternet checkInternet;
+    int c=0;
+    String sub[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +49,24 @@ public class ChangeSub extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
 
+        Intent intent=getIntent();
+        String test=intent.getStringExtra(StudentPage.g);
+        info= test.substring(0,test.indexOf('@'));
+        clg=test.substring((test.indexOf('@')+1),test.indexOf('!'));
+        clgr=test.substring(test.indexOf('!')+1);
+        fd= FirebaseDatabase.getInstance().getReference().child("Students");
+        fd.child(clg).child(info).child(clgr).child("All").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                add d=dataSnapshot.getValue(add.class);
+                getSubject(d.uname);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         //Linking all the subjects
         for(j=1;j<=12;j++)
         {
@@ -47,13 +74,7 @@ public class ChangeSub extends AppCompatActivity {
             int resId=getResources().getIdentifier(edtid,"id",getPackageName());
             subs[j-1]=findViewById(resId);
         }
-
-        Intent intent=getIntent();
-        String test=intent.getStringExtra(StudentPage.g);
-        info= test.substring(0,test.indexOf('@'));
-        clg=test.substring((test.indexOf('@')+1),test.indexOf('!'));
-        clgr=test.substring(test.indexOf('!')+1);
-        fd= FirebaseDatabase.getInstance().getReference().child("Students");
+        getSub();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +82,48 @@ public class ChangeSub extends AppCompatActivity {
             }
         });
 
+    }
+    public void getSubject(String n)
+    {
+        int c1=0;
+        for(i=0;i<n.length();i++)
+        {
+            if(n.charAt(i)=='/')
+                c1++;
+        }
+        sub=new String[c1];
+        String  s1="";
+        c1=0;
+        for(i=0;i<n.length();i++)
+        {
+            char ch=n.charAt(i);
+            if(ch=='/')
+            {
+                sub[c1]=s1;
+                subs[c1++].setText(s1);
+                s1="";
+            }
+            else
+            {
+                s1=s1+ch;
+            }
+        }
+    }
+    public void getSub()
+    {
+        String c2="";
+        for(int i=0;i<alsub.length();i++)
+        {
+            char ch=alsub.charAt(i);
+            if(ch!='/')
+                c2=c2+ch;
+            else
+            {
+                subs[c].setText(c2);
+                c++;
+                c2="";
+            }
+        }
     }
     public void Checkon() {
         i=0;
@@ -106,8 +169,17 @@ public class ChangeSub extends AppCompatActivity {
     {
         for(int q=0;q<i;q++)
         {
+            int fl=0;
             add nsub=new add("0/0");
-            fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(nsub);
+            for(int j=0;j<sub.length;j++)
+            {
+                if(sub[j].equals(subjects[q]))
+                    fl=1;
+            }
+            if(fl==0){
+                fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(nsub);
+            }
+            fl=0;
         }
         String allsubject="";
         for(int q=0;q<i;q++)

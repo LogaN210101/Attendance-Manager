@@ -7,7 +7,7 @@
         app:showAsAction="never"/>
     <item
         android:id="@+id/item2"
-        android:title="Change Subject"
+        android:title="Edit Subject"
         app:showAsAction="never"/>
     <item
         android:id="@+id/item4"
