@@ -220,7 +220,7 @@ TextView details;
                 s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr;
                 s5 = s;
                 details.setText(s);
-                details.setTextSize(20f);
+                details.setTextSize(15f);
                 s="YOUR ATTENDANCE";
                 dbs = FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
                         .child(dep + sec + yr).child(clgr);
