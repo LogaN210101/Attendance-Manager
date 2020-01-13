@@ -155,6 +155,10 @@ public class StudentEditAccount extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please Enter your year of joining", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (yr.length()!=4) {
+                        Toast.makeText(getApplicationContext(), "Please Enter year in YYYY Format", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (clgr.equals("")) {
                         Toast.makeText(getApplicationContext(), "Please Enter Roll number", Toast.LENGTH_SHORT).show();
                         return;

@@ -50,6 +50,7 @@ public class Registration extends AppCompatActivity {
     private ProgressDialog progress;
     String f,test,uname, name, dept, sc, clg, yr,clgr;
     DatabaseReference ft,fs,fu;
+    String dep;
     CheckInternet checkInternet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +137,62 @@ public class Registration extends AppCompatActivity {
         sv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storeimage();
+                name=nm.getText().toString().trim();
+                clg=clgname.getText().toString().trim().toUpperCase();
+                sc=sec.getText().toString().trim().toUpperCase();
+                clgr=clgroll.getText().toString().trim();
+                yr=yer.getText().toString().trim();
+                Spinner spinner=findViewById(R.id.department);
+                dep=spinner.getSelectedItem().toString().trim();
+                if(test.equals("Teacher")) {
+                    dep = teacherdept.getText().toString();
+                    if (dep.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Select your department", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (clg.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please enter college name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (name.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    storeimage();
+                }
+                if(test.equals("Student")) {
+                    if (yr.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your year of joining", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (yr.length() != 4) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your year of joining in 4 digit yyyy format", Toast.LENGTH_SHORT).show();
+                        yer.setText("");
+                        return;
+                    }
+                    if (clgr.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter Roll number", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (sc.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Section cannot be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (dep.equals("Department") || dep.equals((""))) {
+                        Toast.makeText(getApplicationContext(), "Please Select Your Department", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (clg.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please enter your college name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (name.equals("")) {
+                        Toast.makeText(getApplicationContext(), "Please Enter your name", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    storeimage();
+                }
             }
         });
         profile.setOnClickListener(new View.OnClickListener() {
@@ -213,14 +269,6 @@ public class Registration extends AppCompatActivity {
 
     void extradata()
     {
-        name=nm.getText().toString().trim();
-        clg=clgname.getText().toString().trim().toUpperCase();
-        sc=sec.getText().toString().trim().toUpperCase();
-        clgr=clgroll.getText().toString().trim();
-        yr=yer.getText().toString().trim();
-        Spinner spinner=findViewById(R.id.department);
-        String dep=spinner.getSelectedItem().toString().trim();
-
 
         if(test.equals("Teacher"))
         {

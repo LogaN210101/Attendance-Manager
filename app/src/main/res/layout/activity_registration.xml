@@ -155,8 +155,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="348dp"
-        android:layout_height="59dp"
+        android:layout_width="380dp"
+        android:layout_height="62dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
