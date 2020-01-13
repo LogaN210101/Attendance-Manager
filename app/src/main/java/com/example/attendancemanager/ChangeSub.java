@@ -58,8 +58,8 @@ public class ChangeSub extends AppCompatActivity {
         fd.child(clg).child(info).child(clgr).child("All").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                add d=dataSnapshot.getValue(add.class);
-                getSubject(d.uname);
+                try{add d=dataSnapshot.getValue(add.class);
+                getSubject(d.uname);}catch(Exception e){}
             }
 
             @Override
@@ -171,11 +171,11 @@ public class ChangeSub extends AppCompatActivity {
         {
             int fl=0;
             add nsub=new add("0/0");
-            for(int j=0;j<sub.length;j++)
+            try{for(int j=0;j<sub.length;j++)
             {
                 if(sub[j].equals(subjects[q]))
                     fl=1;
-            }
+            }}catch(Exception e){}
             if(fl==0){
                 fd.child(clg).child(info).child(clgr).child(subjects[q]).setValue(nsub);
             }
