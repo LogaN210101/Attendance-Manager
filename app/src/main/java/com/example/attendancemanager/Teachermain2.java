@@ -9,6 +9,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -39,6 +41,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     String student[][];
     CheckBox gcb;
     int total2=0;
+    Switch edt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,8 +59,31 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
         sub=test.substring(test.indexOf('@')+1);
         t=findViewById(R.id.table);
         save=findViewById(R.id.button);
+        edt=findViewById(R.id.editbtn);
         getCollege();
         save.setOnClickListener(this);
+        edt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked)
+               {
+                   AlertDialog.Builder alt=new AlertDialog.Builder(Teachermain2.this);
+                   alt.setTitle("Note")
+                           .setCancelable(false)
+                           .setMessage("This mode is meant for rectification of the attendance,it will not increase the total count of classes")
+                           .setPositiveButton("Understood", new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialog, int which) {
+
+                               }
+                           });
+                   AlertDialog a=alt.create();
+                   a.show();
+               }
+            }
+
+        });
     }
     void show()
     {
@@ -131,9 +157,9 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     }
     public void errorNoStudent() {
         AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Warning!")
+        alt.setTitle("Attention!")
                 .setCancelable(false)
-                .setMessage("No Students are still registered in this class for this subject.")
+                .setMessage("No Students found  in this class for this subject code.")
                 .setPositiveButton("Back", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -165,6 +191,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                                 student[2][j] = total;
                                 if(Integer.parseInt(total)>total2)
                                     total2=Integer.parseInt(total);
+
                                 updateTotal();
                             }
                             else
@@ -228,14 +255,22 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v==save)
         {
-            for(int j=0;j<student[0].length;j++)
-            {
-                gcb=findViewById(Integer.parseInt(student[0][j]));
-                if(gcb.isChecked())
-                {
-                    student[1][j]=""+((Integer.parseInt(student[1][j]))+1);
+            for(int j=0;j<student[0].length;j++) {
+                gcb = findViewById(Integer.parseInt(student[0][j]));
+
+                if (gcb.isChecked()) {
+                        student[1][j] = "" + ((Integer.parseInt(student[1][j])) + 1);
+                        if((Integer.parseInt(student[1][j]))>(Integer.parseInt(student[2][j]))&&edt.isChecked())
+                    {
+                        Toast.makeText(getApplicationContext(),"Error! No. of present days exceeds No. of total days. Check row no. "+(j+1),Toast.LENGTH_LONG).show();
+                        return;
+                    }
                 }
-                student[2][j]=""+((Integer.parseInt(student[2][j]))+1);
+                if (!edt.isChecked()) {
+                    student[2][j] = "" + ((Integer.parseInt(student[2][j])) + 1);
+                }
+
+
             }
             saveit();
         }

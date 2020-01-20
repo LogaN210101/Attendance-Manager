@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String useremail,userpassword;
     ProgressDialog pd;
     TextView tvreg;
-    int fl=0;
     static String ty="";
     CheckInternet checkInternet;
     private DatabaseReference db;
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     });
             AlertDialog a1 = alt.create();
             a1.show();
-            set.edit().putBoolean("firsttime",false).commit();
+            set.edit().putBoolean("firsttime",false).apply();
         }
 
         checkInternet=new CheckInternet();
