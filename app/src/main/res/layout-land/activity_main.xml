@@ -11,43 +11,18 @@
     <Button
         android:id="@+id/signin"
         android:layout_width="132dp"
-        android:layout_height="33dp"
+        android:layout_height="38dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/teacher2"
         android:text="Sign In"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
-        android:layout_width="300dp"
-        android:layout_height="65dp"
-
-        android:layout_below="@+id/heading"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:background="@drawable/edit_round"
-            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
-            android:drawablePadding="5dp"
-            android:hint="Enter Password"
-            android:inputType="textPassword"
-            android:paddingStart="8dp"
-
-            android:paddingEnd="5dp" />
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout9"
@@ -55,7 +30,7 @@
         android:layout_height="65dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/heading"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="@+id/heading"
@@ -76,7 +51,35 @@
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="300dp"
+        android:layout_height="65dp"
+
+        android:layout_below="@+id/heading"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout9"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout9"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edit_round"
+            android:drawableStart="@drawable/ic_vpn_key_black_24dp"
+            android:drawablePadding="5dp"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:paddingStart="8dp"
+
+            android:paddingEnd="5dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/imageView"
         android:layout_width="201dp"
@@ -84,22 +87,25 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="40dp"
-        android:background="@drawable/logoland"
+
+        android:src="@drawable/logoland"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/heading"
-        android:layout_width="204dp"
-        android:layout_height="58dp"
+        android:layout_width="200dp"
+        android:layout_height="62dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="122dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
         android:text="LOGIN"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -112,8 +118,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.338" />
 
     <TextView
         android:id="@+id/textView9"

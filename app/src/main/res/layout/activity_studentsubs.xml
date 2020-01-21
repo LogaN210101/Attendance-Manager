@@ -7,6 +7,7 @@
     android:background="@drawable/back"
     tools:context=".Studentsubs">
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="357dp"
@@ -20,8 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082" />
-
+        app:layout_constraintVertical_bias="0.028" />
 
     <Button
         android:id="@+id/saveinfo"
@@ -40,9 +40,9 @@
     <EditText
         android:id="@+id/sub1"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Subject 1"
@@ -51,13 +51,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub2"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
 
         android:layout_marginTop="20dp"
@@ -74,7 +74,7 @@
     <EditText
         android:id="@+id/sub3"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -91,7 +91,7 @@
     <EditText
         android:id="@+id/sub4"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -108,7 +108,7 @@
     <EditText
         android:id="@+id/sub5"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -125,7 +125,7 @@
     <EditText
         android:id="@+id/sub6"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -142,24 +142,24 @@
     <EditText
         android:id="@+id/sub7"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:hint="Subject 7"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub8"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -177,7 +177,7 @@
     <EditText
         android:id="@+id/sub9"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -195,7 +195,7 @@
     <EditText
         android:id="@+id/sub10"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
@@ -212,7 +212,7 @@
     <EditText
         android:id="@+id/sub11"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -229,7 +229,7 @@
     <EditText
         android:id="@+id/sub12"
         android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
