@@ -107,13 +107,7 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
                                 t.addView(tr);
                                 i++;
                             }
-                            else
-                            {
-                                try{
-                                error();} catch(Exception e){}
-                            }
-                            if(i==0)
-                                errorNoStudent();
+
                         }
 
                         @Override
@@ -130,39 +124,11 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
             }
         });
     }
-    public void errorNoStudent() {
-        AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Warning!")
-                .setCancelable(false)
-                .setMessage("No Students are still registered in this class for this subject.")
-                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
-                    }
-                });
-        AlertDialog a=alt.create();
-        a.show();
-    }
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),TeacherPage.class));
         finish();
     }
-    public void error(){
-        AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Warning!")
-                .setCancelable(false)
-                .setMessage("The Paper Code you entered does not belong to this class. Please go back and recheck the paper code.")
-                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
-                    }
-                });
-        AlertDialog a=alt.create();
-        a.show();
-    }
+
 }
