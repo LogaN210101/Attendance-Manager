@@ -93,21 +93,48 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 t.removeAllViewsInLayout();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String a = ds.getKey();
-                    final TableRow tr=new TableRow(Teachermain2.this);
-                    tr.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.MATCH_PARENT));
-                    TextView tv1=new TextView(Teachermain2.this);
-                    tv1.setText(a);
-                    tv1.setTextSize(30);
-                    CheckBox cb=new CheckBox(Teachermain2.this);
-                    cb.setId(Integer.parseInt(a));
-                    tr.addView(cb);
-                    tr.addView(tv1);
-                    t.addView(tr);
-                    try {
-                        student[0][i++] = a;
-                    }
-                    catch(Exception e){}
+                    final String a = ds.getKey();
+
+                    db.child(a).child(sub).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            add a2 = dataSnapshot.getValue(add.class);
+                            if (a2 != null) {
+                                final TableRow tr=new TableRow(Teachermain2.this);
+                                tr.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.MATCH_PARENT));
+                                TextView tv1=new TextView(Teachermain2.this);
+                                tv1.setText(a);
+                                tv1.setTextSize(30);
+                                CheckBox cb=new CheckBox(Teachermain2.this);
+                                cb.setId(Integer.parseInt(a));
+                                tr.addView(cb);
+                                tr.addView(tv1);
+                                t.addView(tr);
+                                try {
+                                    student[0][i++] = a;
+                                }
+                                catch(Exception e){}
+                            }
+                            else
+                            {
+                                try{
+                                    //t.setVisibility(View.INVISIBLE);
+                                    //error();
+                                }
+                                catch(Exception e){}
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
+
+
                 }
                 defAttendance();
             }
@@ -142,6 +169,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     i++;
+
                 }
                 student=new String[3][i];
                 if(i==0)
@@ -197,8 +225,9 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                             else
                             {
                                 try{
-                                t.setVisibility(View.INVISIBLE);
-                                error();}
+                                //t.setVisibility(View.INVISIBLE);
+                                //error();
+                                }
                                 catch(Exception e){}
                             }
                         }
@@ -253,38 +282,42 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v==save)
-        {
-            for(int j=0;j<student[0].length;j++) {
-                gcb = findViewById(Integer.parseInt(student[0][j]));
-
-                if (gcb.isChecked()) {
+        if(v==save) {
+            try {
+                for (int j = 0; j < student[0].length; j++) {
+                    gcb = findViewById(Integer.parseInt(student[0][j]));
+                    if (gcb.isChecked()) {
                         student[1][j] = "" + ((Integer.parseInt(student[1][j])) + 1);
-                        if((Integer.parseInt(student[1][j]))>(Integer.parseInt(student[2][j]))&&edt.isChecked())
-                    {
-                        Toast.makeText(getApplicationContext(),"Error! No. of present days exceeds No. of total days. Check row no. "+(j+1),Toast.LENGTH_LONG).show();
-                        return;
+                        if ((Integer.parseInt(student[1][j])) > (Integer.parseInt(student[2][j])) && edt.isChecked()) {
+                            Toast.makeText(getApplicationContext(), "Error! No. of present days exceeds No. of total days. Check row no. " + (j + 1), Toast.LENGTH_LONG).show();
+                            return;
+                        }
                     }
-                }
-                if (!edt.isChecked()) {
-                    student[2][j] = "" + ((Integer.parseInt(student[2][j])) + 1);
+                    if (!edt.isChecked()) {
+                        student[2][j] = "" + ((Integer.parseInt(student[2][j])) + 1);
+                    }
+
                 }
 
-
+            } catch (Exception e) {
+            } finally {
+                saveit();
             }
-            saveit();
         }
     }
     public void saveit()
     {
-        for(int j=0;j<student[0].length;j++)
-        {
-            add a3=new add((student[1][j]+"/"+student[2][j]));
-            db.child(student[0][j]).child(sub).setValue(a3);
+        for(int j=0;j<student[0].length;j++) {
+            if(student[1][j]!=null) {
+                add a3 = new add((student[1][j] + "/" + student[2][j]));
+                db.child(student[0][j]).child(sub).setValue(a3);
+            }
         }
+        t.removeAllViews();
+        getCollege();
         Toast.makeText(getApplicationContext(),"Attendance for this class completed",Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(Teachermain2.this,TeacherPage.class));
-        finish();
+        /*startActivity(new Intent(Teachermain2.this,TeacherPage.class));
+        finish();*/
     }
     @Override
     public void onBackPressed() {
