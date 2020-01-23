@@ -222,14 +222,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
 
                                 updateTotal();
                             }
-                            else
-                            {
-                                try{
-                                //t.setVisibility(View.INVISIBLE);
-                                //error();
-                                }
-                                catch(Exception e){}
-                            }
+
                         }
 
                         @Override
@@ -287,11 +280,13 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                 for (int j = 0; j < student[0].length; j++) {
                     gcb = findViewById(Integer.parseInt(student[0][j]));
                     if (gcb.isChecked()) {
-                        student[1][j] = "" + ((Integer.parseInt(student[1][j])) + 1);
-                        if ((Integer.parseInt(student[1][j])) > (Integer.parseInt(student[2][j])) && edt.isChecked()) {
+
+                        if ((Integer.parseInt(student[1][j])) >= (Integer.parseInt(student[2][j])) && edt.isChecked()) {
                             Toast.makeText(getApplicationContext(), "Error! No. of present days exceeds No. of total days. Check row no. " + (j + 1), Toast.LENGTH_LONG).show();
                             return;
                         }
+                        else
+                            student[1][j] = "" + ((Integer.parseInt(student[1][j])) + 1);
                     }
                     if (!edt.isChecked()) {
                         student[2][j] = "" + ((Integer.parseInt(student[2][j])) + 1);
