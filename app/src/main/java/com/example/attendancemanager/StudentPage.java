@@ -60,7 +60,6 @@ TextView details;
         checkInternet=new CheckInternet();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(checkInternet,intentFilter);
-        Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
         auth=FirebaseAuth.getInstance();
         dp=findViewById(R.id.profile_pic);
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
