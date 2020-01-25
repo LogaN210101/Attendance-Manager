@@ -93,6 +93,8 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                 SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
                 obj.putString("From",test);
                 obj.apply();
+                startActivity(new Intent(Teachermain2.this,TakeAttendance.class));
+                finish();
             }
         });
     }
