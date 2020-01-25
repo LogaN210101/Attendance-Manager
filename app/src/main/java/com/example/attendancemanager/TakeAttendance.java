@@ -1,7 +1,8 @@
 package com.example.attendancemanager;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Window;
@@ -11,7 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +32,7 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
     DatabaseReference db,dbs;
     TableLayout t;
     TextView tv2;
+    String test;
     int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,20 @@ public class TakeAttendance extends AppCompatActivity {   //class to view attend
         auth=FirebaseAuth.getInstance();
         email=auth.getCurrentUser().getEmail();
         dbs= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
-        Intent intent=getIntent();
-        String test=intent.getStringExtra(TeacherPage.s);
+
+        SharedPreferences myobj =getSharedPreferences("MyData",MODE_PRIVATE);
+        String un=myobj.getString("From",null);
+        if(un!=null)
+        {
+            test = un;
+            SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
+            obj.putString("From",null);
+            obj.apply();
+        }
+        else {
+            Intent intent = getIntent();
+            test = intent.getStringExtra(TeacherPage.s);
+        }
         info=test.substring(test.indexOf('!')+1,test.indexOf('@'));
         sub=test.substring(test.indexOf('@')+1);
         getSupportActionBar().setTitle("Attendance for "+info);

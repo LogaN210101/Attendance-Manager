@@ -2,6 +2,7 @@ package com.example.attendancemanager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -39,6 +40,7 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
     int i=0;
     Button save;
     String student[][];
+    TextView view_attend;
     CheckBox gcb;
     int total2=0;
     Switch edt;
@@ -54,12 +56,13 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
         email=auth.getCurrentUser().getEmail();
         dbs= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         Intent intent=getIntent();
-        String test=intent.getStringExtra(TeacherPage.s);
+        final String test=intent.getStringExtra(TeacherPage.s);
         info=test.substring(test.indexOf('!')+1,test.indexOf('@'));
         sub=test.substring(test.indexOf('@')+1);
         t=findViewById(R.id.table);
         save=findViewById(R.id.button);
         edt=findViewById(R.id.editbtn);
+        view_attend=findViewById(R.id.view_attendance);
         getCollege();
         save.setOnClickListener(this);
         edt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -83,6 +86,14 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
                }
             }
 
+        });
+        view_attend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
+                obj.putString("From",test);
+                obj.apply();
+            }
         });
     }
     void show()
@@ -244,21 +255,6 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
         for(int t=0;t<student[0].length;t++)
             student[2][t]=""+total2;
     }
-    public void error(){
-        AlertDialog.Builder alt=new AlertDialog.Builder(this);
-        alt.setTitle("Warning!")
-                .setCancelable(false)
-                .setMessage("The Paper Code you entered does not belong to this class. Please go back and recheck the paper code.")
-                .setPositiveButton("Back", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        startActivity(new Intent(getApplicationContext(),TeacherPage.class));
-                    }
-                });
-        AlertDialog a=alt.create();
-        a.show();
-    }
     public int getIndex(String n)
     {
         int fl=0;
@@ -300,19 +296,16 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
-    public void saveit()
-    {
-        for(int j=0;j<student[0].length;j++) {
-            if(student[1][j]!=null) {
+    public void saveit() {
+        for (int j = 0; j < student[0].length; j++) {
+            if (student[1][j] != null) {
                 add a3 = new add((student[1][j] + "/" + student[2][j]));
                 db.child(student[0][j]).child(sub).setValue(a3);
             }
         }
         t.removeAllViews();
         getCollege();
-        Toast.makeText(getApplicationContext(),"Attendance for this class completed",Toast.LENGTH_SHORT).show();
-        /*startActivity(new Intent(Teachermain2.this,TeacherPage.class));
-        finish();*/
+        Toast.makeText(getApplicationContext(), "Attendance for this class completed", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onBackPressed() {

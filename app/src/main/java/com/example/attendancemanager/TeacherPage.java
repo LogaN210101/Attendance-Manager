@@ -95,7 +95,7 @@ public class TeacherPage extends AppCompatActivity {
         });
         SharedPreferences.Editor obj =getSharedPreferences("MyData",MODE_PRIVATE).edit();
         obj.putString("Type","Teacher");
-        obj.commit();
+        obj.apply();
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
