@@ -216,11 +216,14 @@ TextView details;
                 RequestOptions plc= new RequestOptions();
                 plc.placeholder(getResources().getDrawable(R.drawable.load));
                 Glide.with(getApplicationContext()).setDefaultRequestOptions(plc).load(img_url).into(dp);
-                s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr;
+                if(!sec.equals("NA"))
+                    s = s + clg + "\n" + dep + "\n" + sec + "\n" + yr + "\n" + clgr;
+                else
+                    s=s + clg + "\n" + dep + "\n" + yr + "\n" + clgr;
                 s5 = s;
                 details.setText(s);
                 details.setTextSize(15f);
-                s="YOUR ATTENDANCE";
+                s=" YOUR ATTENDANCE";
                 dbs = FirebaseDatabase.getInstance().getReference().child("Students").child(clg)
                         .child(dep + sec + yr).child(clgr);
                 pd.dismiss();

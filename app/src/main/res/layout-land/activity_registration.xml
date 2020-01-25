@@ -11,7 +11,7 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
@@ -26,11 +26,11 @@
 
     <EditText
         android:id="@+id/college"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="49dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
-        android:hint="Enter College name(full name)"
+        android:hint="Enter College's full name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,10 +49,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.885" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <EditText
         android:id="@+id/year"
@@ -140,16 +140,17 @@
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="160dp"
+        android:layout_width="200dp"
         android:layout_height="20dp"
+        android:layout_marginTop="1dp"
         android:text="Tap to select an image."
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintTop_toBottomOf="@+id/profilepic"
+        app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"

@@ -155,7 +155,7 @@ public class TeacherPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AddS aa=dataSnapshot.getValue(AddS.class);
-                detail.setText(aa.name+"\n"+aa.dept+" Department");
+                detail.setText(aa.name+"\n\n"+aa.dept+" Department");
                 detail.setTextSize(18f);
                 String x=aa.imgurl;
                 fg=aa.name+"!"+aa.college+"@"+aa.dept+"#"+x;

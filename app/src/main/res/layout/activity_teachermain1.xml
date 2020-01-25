@@ -11,21 +11,21 @@
     <TextView
         android:id="@+id/heading"
         android:layout_width="306dp"
-        android:layout_height="36dp"
+        android:layout_height="45dp"
         android:text="Enter Class details"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintVertical_bias="0.371" />
 
     <RadioGroup
         android:id="@+id/radiogroup"
-        android:layout_width="148dp"
-        android:layout_height="71dp"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.114"
@@ -36,14 +36,14 @@
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="150dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:text="Take Attendance"
             android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="150dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:text="View Attendance"
             android:textSize="14sp" />
     </RadioGroup>
@@ -53,10 +53,10 @@
         android:id="@+id/department"
         android:layout_width="152dp"
         android:layout_height="51dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heading"
         app:layout_constraintVertical_bias="0.0" />
@@ -65,38 +65,39 @@
         android:id="@+id/Papercode"
         android:layout_width="266dp"
         android:layout_height="65dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Enter Paper Code"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/department"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/section"
-        android:layout_width="92dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
         android:hint="Section"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toEndOf="@+id/department"
         app:layout_constraintTop_toBottomOf="@+id/heading"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/batchyear"
-        android:layout_width="268dp"
-        android:layout_height="64dp"
+        android:layout_width="266dp"
+        android:layout_height="65dp"
         android:layout_marginTop="15dp"
         android:drawableRight="@drawable/ic_edit_black_24dp"
         android:ems="10"
@@ -104,7 +105,7 @@
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Papercode"
         app:layout_constraintVertical_bias="0.0" />
@@ -113,35 +114,45 @@
         android:id="@+id/next"
         android:layout_width="108dp"
         android:layout_height="43dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="#536DFE"
         android:text="Proceed ►"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.795"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.921" />
+        app:layout_constraintVertical_bias="0.946" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilepic"
         android:layout_width="155dp"
         android:layout_height="159dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/load"
         app:civ_border_color="#000C61"
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/defaultpic" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="150dp"
-        android:layout_height="119dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="172dp"
+        android:layout_height="158dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:paddingEnd="20dp"
+        android:textStyle="normal|bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/profilepic"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

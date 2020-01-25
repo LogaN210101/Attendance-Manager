@@ -51,13 +51,13 @@ public class Teachermain2 extends AppCompatActivity implements View.OnClickListe
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_teachermain2);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(BLUE));
-        getSupportActionBar().setTitle("Attendance for the current class");
         auth=FirebaseAuth.getInstance();
         email=auth.getCurrentUser().getEmail();
         dbs= FirebaseDatabase.getInstance().getReference().child("Users").child(email.substring(0,email.indexOf('@')));
         Intent intent=getIntent();
         final String test=intent.getStringExtra(TeacherPage.s);
         info=test.substring(test.indexOf('!')+1,test.indexOf('@'));
+        getSupportActionBar().setTitle("Attendance for "+ info);
         sub=test.substring(test.indexOf('@')+1);
         t=findViewById(R.id.table);
         save=findViewById(R.id.button);

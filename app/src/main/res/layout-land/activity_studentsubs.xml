@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="357dp"
+        android:layout_width="match_parent"
         android:layout_height="46dp"
         android:text="Fill In Your Subject Paper Codes"
         android:textAlignment="center"
@@ -25,23 +25,23 @@
 
     <Button
         android:id="@+id/saveinfo"
-        android:layout_width="87dp"
-        android:layout_height="31dp"
+        android:layout_width="93dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
         android:background="#536DFE"
         android:text="Save"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.982" />
+        app:layout_constraintTop_toBottomOf="@+id/sub8"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub1"
         android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="Subject 1"
         android:inputType="textPersonName"
@@ -49,14 +49,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub2"
         android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 2"
         android:inputType="textPersonName"
@@ -70,9 +70,9 @@
     <EditText
         android:id="@+id/sub3"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 3"
         android:inputType="textPersonName"
@@ -86,9 +86,9 @@
     <EditText
         android:id="@+id/sub4"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 4"
         android:inputType="textPersonName"
@@ -102,23 +102,23 @@
     <EditText
         android:id="@+id/sub5"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="Subject 5"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub6"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 6"
         android:inputType="textPersonName"
@@ -132,9 +132,9 @@
     <EditText
         android:id="@+id/sub7"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 7"
         android:inputType="textPersonName"
@@ -148,9 +148,9 @@
     <EditText
         android:id="@+id/sub8"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 8"
         android:inputType="textPersonName"
@@ -164,23 +164,23 @@
     <EditText
         android:id="@+id/sub9"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:hint="Subject 9"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.953"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/sub10"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 10"
         android:inputType="textPersonName"
@@ -194,9 +194,9 @@
     <EditText
         android:id="@+id/sub11"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Subject 11"
         android:inputType="textPersonName"
@@ -210,9 +210,9 @@
     <EditText
         android:id="@+id/sub12"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Subject 12"
